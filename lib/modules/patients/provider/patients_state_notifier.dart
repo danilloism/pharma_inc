@@ -1,29 +1,27 @@
 part of 'patients_provider.dart';
 
-class _PatientsNotifier extends StateNotifier<PatientsState> {
-  _PatientsNotifier(
-      {required Repository patientsRepository,
-      required _JumpNotifier jumpNotifier})
+class PatientsNotifier extends StateNotifier<PatientsState> {
+  PatientsNotifier({required Repository patientsRepository})
       : _patientsRepository = patientsRepository,
-        _jumpState = jumpNotifier,
+        _requestPage = 1,
         super(PatientsState.initial);
 
   final Repository _patientsRepository;
-  List<PatientModel> _currentPatients = [];
-  final _JumpNotifier _jumpState;
+  final List<PatientModel> _currentPatients = [];
+  int _requestPage;
 
   List<PatientModel> get currentPatients => List.unmodifiable(_currentPatients);
+  int get currentPage => _requestPage - 1;
 
   Future<void> getPatients() async {
     state = PatientsState.loading;
-    final from = _jumpState.from;
-    final to = _jumpState.to;
 
     try {
-      _currentPatients = await _patientsRepository.get(from, to);
-      _jumpState.refresh();
+      _currentPatients.addAll(await _patientsRepository.get(_requestPage));
+      _requestPage++;
       state = PatientsState.done;
     } catch (e) {
+      state = PatientsState.error;
       rethrow;
     }
   }

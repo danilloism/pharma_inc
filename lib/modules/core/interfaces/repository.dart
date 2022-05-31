@@ -1,5 +1,5 @@
-import '../../patients/model/patient_model.dart';
+import '../../patients/models/patient_model.dart';
 
 abstract class Repository {
-  Future<List<PatientModel>> get(int from, int to);
+  Future<List<PatientModel>> get(int page);
 }

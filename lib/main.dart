@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pharma_inc/modules/core/config/logger.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ProviderScope(observers: [Logger()], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
