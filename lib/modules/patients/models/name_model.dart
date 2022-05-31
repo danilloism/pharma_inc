@@ -3,7 +3,7 @@ class NameModel {
   final String firstName;
   final String lastName;
 
-  NameModel(
+  const NameModel(
       {required this.title, required this.firstName, required this.lastName});
 
   factory NameModel.fromJson(Map<String, dynamic> json) {
