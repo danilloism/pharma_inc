@@ -16,6 +16,7 @@ class PatientModel {
   final AddressModel address;
 
   String get name => _name.toString();
+  int get age => DateTime.now().year - dayOfBirth.year;
 
   const PatientModel({
     required this.id,

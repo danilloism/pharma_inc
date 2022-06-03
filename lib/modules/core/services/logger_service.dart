@@ -2,7 +2,7 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class Logger extends ProviderObserver {
+class LoggerService extends ProviderObserver {
   @override
   void didUpdateProvider(
     ProviderBase provider,
@@ -11,7 +11,6 @@ class Logger extends ProviderObserver {
     ProviderContainer container,
   ) {
     print(
-        '''[${provider.name ?? provider.runtimeType} updated] Previous value: $previousValue
-    [${provider.name ?? provider.runtimeType} updated] New value: $newValue''');
+        '[${provider.name ?? provider.runtimeType} updated]\nPrevious value: $previousValue\nNew value: $newValue');
   }
 }

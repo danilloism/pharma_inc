@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/patient_model.dart';
@@ -13,7 +15,7 @@ class PatientsProvider {
       (ref) => PatientRepository(dioClient: Dio()),
       name: 'Repository Provider');
 
-  static final notifier =
+  static final stateNotifierProvider =
       StateNotifierProvider<PatientsNotifier, PatientsState>(
           (ref) => PatientsNotifier(
               patientsRepository: ref.watch(_repositoryProvider)),

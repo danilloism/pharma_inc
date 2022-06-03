@@ -1,1 +1,1 @@
-enum PatientsState { initial, loading, done, error }
+enum PatientsState { initial, loading, refreshing, done, error }

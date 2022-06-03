@@ -31,7 +31,7 @@ main() {
           () async {
         when(() => repositoryMock.get(1))
             .thenAnswer((invocation) => Future.value([]));
-        notifier.getPatients().then((value) {
+        notifier.loadPatients().then((value) {
           expect(notifier.state, equals(PatientsState.done));
           expect(notifier.currentPage, equals(1));
         });
@@ -40,7 +40,7 @@ main() {
 
       test('should change state to \'error\' if Exception happens.', () async {
         when(() => repositoryMock.get(1)).thenThrow(Exception());
-        final future = notifier.getPatients();
+        final future = notifier.loadPatients();
         expectLater(future, throwsA(isA<Exception>()));
         try {
           await future;
