@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="deepBlue">#FF003461</color>
+    <color name="softBlue">#FF0083CA</color>
+    <color name="seaBlue">#FF00AFAD</color>
+    <color name="deepOrange">#FFF26522</color>
+    <color name="softOrange">#FFFCAF17</color>
+    <color name="white">#ffffffff</color>
+</resources>
