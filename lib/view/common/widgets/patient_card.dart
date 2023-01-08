@@ -1,11 +1,11 @@
 import 'package:flutter/widgets.dart';
 
-import '../../../modules/patients/models/patient_model.dart';
+import '../../../modules/patients/models/patient.dart';
 import 'gap.dart';
 
 class PatientCard extends StatelessWidget {
   const PatientCard({super.key, required this.patient});
-  final PatientModel patient;
+  final Patient patient;
 
   @override
   Widget build(BuildContext context) {

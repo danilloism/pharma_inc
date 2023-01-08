@@ -1,4 +1,4 @@
-class AddressModel {
+class Address {
   final int streetNumber;
   final String streetName;
   final String city;
@@ -6,7 +6,7 @@ class AddressModel {
   final String country;
   final String postcode;
 
-  const AddressModel({
+  const Address({
     required this.streetNumber,
     required this.streetName,
     required this.city,
@@ -15,7 +15,7 @@ class AddressModel {
     required this.postcode,
   });
 
-  factory AddressModel.fromJson(Map<String, dynamic> json) => AddressModel(
+  factory Address.fromJson(Map<String, dynamic> json) => Address(
         streetNumber: json['street']['number'],
         streetName: json['street']['name'],
         city: json['city'],

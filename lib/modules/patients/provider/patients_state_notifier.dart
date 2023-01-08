@@ -6,14 +6,14 @@ class PatientsNotifier extends StateNotifier<PatientsState> {
         super(PatientsState.initial);
 
   final Repository _patientsRepository;
-  final List<PatientModel> _loadedPatients = [];
+  final List<Patient> _loadedPatients = [];
   int _requestPage = 0;
-  final _streamController = StreamController<List<PatientModel>>();
+  final _streamController = StreamController<List<Patient>>();
 
-  List<PatientModel> get currentPatients => List.unmodifiable(_loadedPatients);
+  List<Patient> get currentPatients => List.unmodifiable(_loadedPatients);
 
   int get currentPage => _requestPage;
-  Stream<List<PatientModel>> get patientsStream => _streamController.stream;
+  Stream<List<Patient>> get patientsStream => _streamController.stream;
 
   Future<void> loadPatients() async {
     state = _loadedPatients.isEmpty

@@ -1,13 +1,13 @@
-class NameModel {
+class Name {
   final String title;
   final String firstName;
   final String lastName;
 
-  const NameModel(
+  const Name(
       {required this.title, required this.firstName, required this.lastName});
 
-  factory NameModel.fromJson(Map<String, dynamic> json) {
-    return NameModel(
+  factory Name.fromJson(Map<String, dynamic> json) {
+    return Name(
       title: json['title'],
       firstName: json['first'],
       lastName: json['last'],

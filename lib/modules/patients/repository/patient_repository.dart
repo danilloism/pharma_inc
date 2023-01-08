@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 
-import '../../core/interfaces/repository.dart';
 import '../../core/config/settings.dart';
 import '../../core/exceptions/custom_http_exception.dart';
-import '../models/patient_model.dart';
+import '../../core/interfaces/repository.dart';
+import '../models/patient.dart';
 
 class PatientRepository implements Repository {
   PatientRepository({required this.dioClient});
@@ -11,7 +11,7 @@ class PatientRepository implements Repository {
   final Dio dioClient;
 
   @override
-  Future<List<PatientModel>> get(int page) async {
+  Future<List<Patient>> get(int page) async {
     try {
       final queryParams =
           '?page=$page&results=50&seed=dnn&exc=login,registered,cell';
@@ -19,7 +19,7 @@ class PatientRepository implements Repository {
 
       if (res.statusCode == 200) {
         return List.unmodifiable((res.data['results'] as List)
-            .map((pacient) => PatientModel.fromJson(pacient)));
+            .map((pacient) => Patient.fromJson(pacient)));
       } else {
         throw CustomHttpException(
           code: res.statusCode!,

@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pharma_inc/modules/core/config/settings.dart';
 import 'package:pharma_inc/modules/core/exceptions/custom_http_exception.dart';
-import 'package:pharma_inc/modules/patients/models/patient_model.dart';
+import 'package:pharma_inc/modules/patients/models/patient.dart';
 import 'package:pharma_inc/modules/patients/repository/patient_repository.dart';
 
 class DioMock extends Mock implements Dio {}
@@ -50,7 +50,7 @@ void main() async {
         when(() => dioMock.get(url))
             .thenAnswer((invocation) async => Future.value(httpResponse));
         final patients = await repository.get(1);
-        expect(patients, isA<List<PatientModel>>());
+        expect(patients, isA<List<Patient>>());
         expect(patients, isNotEmpty);
         expect(patients, isNotNull);
         expect(patients.length, equals(50));
