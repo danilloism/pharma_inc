@@ -30,3 +30,15 @@ flutter:
   uses-material-design: true
   assets:
     - assets/logo.png
+scripts:
+  gen: flutter pub run build_runner build --delete-conflicting-outputs
+  gen_watch: flutter pub run build_runner watch --delete-conflicting-outputs
+  clean:
+    - flutter clean
+    - flutter pub get
+    - flutter pub upgrade
+    - derry gen
+  test: flutter test --coverage
+  update:
+    - flutter pub get
+    - flutter pub upgrade

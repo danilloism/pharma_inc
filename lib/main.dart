@@ -3,26 +3,33 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'view/ios/ios.app.dart';
-import 'modules/core/services/logger_service.dart';
-import 'view/android/android.app.dart';
+import 'package:pharma_inc/modules/patients/provider/patients_provider.dart';
+import 'package:pharma_inc/view/android/pages/patients_page.dart';
+import 'package:pharma_inc/view/splash_screen.dart';
 
-void main() {
+import 'modules/core/services/logger_service.dart';
+
+Future<void> main() async {
   if (Platform.isFuchsia ||
       Platform.isLinux ||
       Platform.isMacOS ||
-      /*Platform.isWindows ||*/
+      Platform.isWindows ||
       kIsWeb) {
     throw UnimplementedError();
   }
 
+  runApp(const SplashScreen());
+
+  final container = ProviderContainer(observers: [LoggerService()]);
+
+  await container
+      .read(PatientsProvider.stateNotifierProvider.notifier)
+      .loadPatients();
+
   runApp(
-    ProviderScope(
-      observers: [LoggerService()],
-      child: Platform.isAndroid ||
-              Platform.isWindows //TODO: tirar isso aqui depois
-          ? const AndroidApp()
-          : const IosApp(),
+    UncontrolledProviderScope(
+      container: container,
+      child: const MaterialApp(home: PatientsPage()),
     ),
   );
 }
