@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pharma_inc/modules/patients/provider/scroll_controller_provider.dart';
+import 'package:pharma_inc/generated/assets.gen.dart';
 
 import '../../common/widgets/patients_list_view.dart';
 
-class PatientsPage extends ConsumerWidget {
+class PatientsPage extends StatelessWidget {
   const PatientsPage({Key? key}) : super(key: key);
 
-  // if (scrollController.position.pixels !=
-  //             _scrollController.position.minScrollExtent)
-  //        {
-  //       notifierProvider.loadPatients();
-  //     }
-
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.watch(scrollControllerProvider);
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        title: const Text(
-          'Pharma Inc.',
-          style: TextStyle(color: Colors.black),
+        toolbarHeight: 100,
+        title: Builder(
+          builder: (context) => SizedBox(
+            height: Scaffold.of(context).appBarMaxHeight,
+            child: Assets.logo.image(
+              fit: BoxFit.fitHeight,
+              isAntiAlias: true,
+            ),
+          ),
         ),
       ),
       body: const PatientsListView(),
