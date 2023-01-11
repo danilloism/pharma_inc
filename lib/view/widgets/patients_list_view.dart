@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../modules/patients/provider/patients_provider.dart';
-import 'patient_card.dart';
+import 'package:pharma_inc/provider/patients_provider.dart';
+import 'package:pharma_inc/view/widgets/patient_card.dart';
 
 class PatientsListView extends ConsumerStatefulWidget {
   const PatientsListView({Key? key}) : super(key: key);

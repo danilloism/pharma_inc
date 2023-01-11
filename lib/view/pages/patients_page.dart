@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pharma_inc/generated/assets.gen.dart';
-import 'package:pharma_inc/view/android/widgets/search.dart';
-import 'package:pharma_inc/view/common/widgets/gap.dart';
-
-import '../../common/widgets/patients_list_view.dart';
+import 'package:pharma_inc/view/widgets/gap.dart';
+import 'package:pharma_inc/view/widgets/patients_list_view.dart';
+import 'package:pharma_inc/view/widgets/search.dart';
 
 class PatientsPage extends StatelessWidget {
   const PatientsPage({Key? key}) : super(key: key);

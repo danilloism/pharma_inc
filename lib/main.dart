@@ -3,11 +3,9 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pharma_inc/modules/patients/provider/patients_provider.dart';
-import 'package:pharma_inc/view/android/pages/patients_page.dart';
-import 'package:pharma_inc/view/splash_screen.dart';
-
-import 'modules/core/services/logger_service.dart';
+import 'package:pharma_inc/provider/patients_provider.dart';
+import 'package:pharma_inc/view/pages/patients_page.dart';
+import 'package:pharma_inc/view/pages/splash_screen.dart';
 
 Future<void> main() async {
   if (Platform.isFuchsia ||
@@ -20,7 +18,7 @@ Future<void> main() async {
 
   runApp(const SplashScreen());
 
-  final container = ProviderContainer(observers: [LoggerService()]);
+  final container = ProviderContainer();
 
   await container
       .read(PatientsProvider.stateNotifierProvider.notifier)

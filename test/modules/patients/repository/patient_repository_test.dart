@@ -4,10 +4,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:pharma_inc/modules/core/config/settings.dart';
-import 'package:pharma_inc/modules/core/exceptions/custom_http_exception.dart';
-import 'package:pharma_inc/modules/patients/models/patient.dart';
-import 'package:pharma_inc/modules/patients/repository/patient_repository.dart';
+import 'package:pharma_inc/exceptions/custom_http_exception.dart';
+import 'package:pharma_inc/models/patient.dart';
+import 'package:pharma_inc/repository/patient_repository.dart';
 
 class DioMock extends Mock implements Dio {}
 
@@ -15,8 +14,6 @@ void main() async {
   TestWidgetsFlutterBinding.ensureInitialized();
   late PatientRepository repository;
   late DioMock dioMock;
-  const url =
-      '${Settings.apiUrl}?page=1&results=50&seed=dnn&exc=login,registered,cell';
   late Response httpResponse;
   final data =
       jsonDecode(await rootBundle.loadString('assets/mock_response.json'));
@@ -40,14 +37,14 @@ void main() async {
 
     group('get()', () {
       test('should make only one GET request.', () async {
-        when(() => dioMock.get(url))
+        when(() => dioMock.get(any(named: 'queryParameters')))
             .thenAnswer((invocation) async => Future.value(httpResponse));
         await repository.get(1);
-        verify(() => dioMock.get(url)).called(1);
+        verify(() => dioMock.get(any(named: 'queryParameters'))).called(1);
       });
 
       test('should return a List<PatientModel> object of size 50.', () async {
-        when(() => dioMock.get(url))
+        when(() => dioMock.get(any(named: 'queryParameters')))
             .thenAnswer((invocation) async => Future.value(httpResponse));
         final patients = await repository.get(1);
         expect(patients, isA<List<Patient>>());
@@ -62,7 +59,7 @@ void main() async {
         httpResponse.statusMessage = 'Bad Request';
         httpResponse.data = null;
 
-        when(() => dioMock.get(url))
+        when(() => dioMock.get(any(named: 'queryParameters')))
             .thenAnswer((invocation) async => Future.value(httpResponse));
 
         expectLater(

@@ -1,8 +1,11 @@
-import 'package:pharma_inc/modules/patients/models/address..dart';
-import 'package:pharma_inc/modules/patients/models/id.dart';
-import 'package:pharma_inc/modules/patients/models/name.dart';
+import 'package:pharma_inc/models/address.dart';
+import 'package:pharma_inc/models/id.dart';
+import 'package:pharma_inc/models/name.dart';
 
-import '../../core/helpers/common.dart';
+extension on String {
+  String get capitalized =>
+      '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
+}
 
 class Patient {
   final Id id;

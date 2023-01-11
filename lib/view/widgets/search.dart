@@ -12,7 +12,7 @@ class Search extends StatelessWidget {
           child: TextField(
             decoration: InputDecoration(
               border: OutlineInputBorder(),
-              labelText: 'Search',
+              hintText: 'Search',
               suffixIcon: Icon(Icons.person_search),
             ),
           ),

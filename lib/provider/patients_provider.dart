@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../core/interfaces/repository.dart';
 import '../models/patient.dart';
 import '../repository/patient_repository.dart';
+import '../repository/repository.dart';
 import '../state/patients_state.dart';
 
 part 'patients_state_notifier.dart';

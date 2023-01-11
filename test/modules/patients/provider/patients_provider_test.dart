@@ -2,9 +2,9 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:pharma_inc/modules/patients/provider/patients_provider.dart';
-import 'package:pharma_inc/modules/patients/repository/patient_repository.dart';
-import 'package:pharma_inc/modules/patients/state/patients_state.dart';
+import 'package:pharma_inc/provider/patients_provider.dart';
+import 'package:pharma_inc/repository/patient_repository.dart';
+import 'package:pharma_inc/state/patients_state.dart';
 
 class PatientRepositoryMock extends Mock implements PatientRepository {}
 
@@ -44,7 +44,6 @@ main() {
         expectLater(future, throwsA(isA<Exception>()));
         try {
           await future;
-        } catch (e) {
         } finally {
           expect(notifier.state, equals(PatientsState.error));
         }
