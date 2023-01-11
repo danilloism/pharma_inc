@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pharma_inc/view/common/widgets/gap.dart';
 
 import '../../../modules/patients/provider/patients_provider.dart';
-import '../../android/widgets/load.dart';
 import 'patient_card.dart';
 
 class PatientsListView extends ConsumerStatefulWidget {
@@ -34,23 +32,23 @@ class _PatientsListViewState extends ConsumerState<PatientsListView> {
     final notifierProvider =
         ref.read(PatientsProvider.stateNotifierProvider.notifier);
 
-    return ListView(
-      children: [
-        Padding(
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+          childCount: notifierProvider.currentPatients.length,
+          (context, index) {
+        if (index < notifierProvider.currentPatients.length - 1) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 6, left: 4, right: 4),
+            child:
+                PatientCard(patient: notifierProvider.currentPatients[index]),
+          );
+        }
+
+        return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4),
-          child: ListView.separated(
-            shrinkWrap: true,
-            controller: _scrollController,
-            separatorBuilder: (_, __) => Gap.h08,
-            itemBuilder: (context, i) {
-              return PatientCard(patient: notifierProvider.currentPatients[i]);
-            },
-            itemCount: notifierProvider.currentPatients.length,
-          ),
-        ),
-        Gap.h04,
-        const Load(),
-      ],
+          child: PatientCard(patient: notifierProvider.currentPatients[index]),
+        );
+      }),
     );
   }
 }

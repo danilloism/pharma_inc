@@ -1,6 +1,8 @@
 import 'package:flutter/widgets.dart';
 
 class Gap {
+  const Gap._();
+
   static const w04 = SizedBox(width: 4);
   static const w08 = SizedBox(width: 8);
   static const w12 = SizedBox(width: 12);

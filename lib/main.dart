@@ -29,7 +29,17 @@ Future<void> main() async {
   runApp(
     UncontrolledProviderScope(
       container: container,
-      child: const MaterialApp(home: PatientsPage()),
+      child: MaterialApp(
+        home: const PatientsPage(),
+        theme: ThemeData(
+            scaffoldBackgroundColor: Colors.white,
+            backgroundColor: Colors.white,
+            appBarTheme: const AppBarTheme(
+              centerTitle: true,
+              elevation: 0,
+              color: Colors.white,
+            )),
+      ),
     ),
   );
 }
