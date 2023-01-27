@@ -1,36 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharma_inc/provider/patients_provider.dart';
+import 'package:pharma_inc/state/patients_state.dart';
 import 'package:pharma_inc/view/widgets/patient_card.dart';
 
-class PatientsListView extends ConsumerStatefulWidget {
+class PatientsListView extends ConsumerWidget {
   const PatientsListView({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<PatientsListView> createState() => _PatientsListViewState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(PatientsProvider.stateNotifierProvider);
 
-class _PatientsListViewState extends ConsumerState<PatientsListView> {
-  late final ScrollController _scrollController;
+    if (state == PatientsState.loading) {
+      return const SliverToBoxAdapter(
+          child: Center(child: CircularProgressIndicator()));
+    }
 
-  @override
-  void initState() {
-    _scrollController = ScrollController();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     final notifierProvider =
         ref.read(PatientsProvider.stateNotifierProvider.notifier);
-
     return SliverList(
       delegate: SliverChildBuilderDelegate(
           childCount: notifierProvider.currentPatients.length,

@@ -1,50 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharma_inc/generated/assets.gen.dart';
+import 'package:pharma_inc/generated/colors.gen.dart';
+import 'package:pharma_inc/provider/patients_provider.dart';
 import 'package:pharma_inc/view/widgets/gap.dart';
 import 'package:pharma_inc/view/widgets/patients_list_view.dart';
 import 'package:pharma_inc/view/widgets/search.dart';
 
 const double _toolbarHeight = 90;
 
-class PatientsPage extends StatefulWidget {
+class PatientsPage extends ConsumerStatefulWidget {
   const PatientsPage({Key? key}) : super(key: key);
 
   @override
-  State<PatientsPage> createState() => _PatientsPageState();
+  ConsumerState<PatientsPage> createState() => _PatientsPageState();
 }
 
-class _PatientsPageState extends State<PatientsPage> {
+class _PatientsPageState extends ConsumerState<PatientsPage> {
   late final ScrollController _scrollController;
   var _showGoToTopButton = false;
+  var _loading = false;
 
   @override
   void initState() {
-    _scrollController = ScrollController()..addListener(_controllerListener);
+    _scrollController = ScrollController()
+      ..addListener(() {
+        if (_scrollController.offset == _scrollController.initialScrollOffset) {
+          return _setShowButton(false);
+        }
+
+        _setShowButton(true);
+
+        if (_scrollController.offset ==
+                _scrollController.position.maxScrollExtent &&
+            !_loading) {
+          _setLoading(true);
+          ref
+              .read(PatientsProvider.stateNotifierProvider.notifier)
+              .loadPatients()
+              .then((_) {
+            _setLoading(false);
+          });
+        }
+      });
     super.initState();
   }
 
   @override
   void dispose() {
-    _scrollController
-      ..removeListener(_controllerListener)
-      ..dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
-  void _controllerListener() {
-    void switchState(bool value) {
-      setState(() {
-        _showGoToTopButton = value;
-      });
-    }
+  void _setShowButton(bool value) {
+    setState(() {
+      _showGoToTopButton = value;
+    });
+  }
 
-    if (_scrollController.offset > 0) {
-      switchState(true);
-    }
-
-    if (_scrollController.offset == _scrollController.initialScrollOffset) {
-      switchState(false);
-    }
+  void _setLoading(bool value) {
+    setState(() {
+      _loading = value;
+    });
   }
 
   @override
@@ -54,11 +71,19 @@ class _PatientsPageState extends State<PatientsPage> {
           ? FloatingActionButton(
               tooltip: 'Go to top',
               child: const Icon(Icons.arrow_upward),
-              onPressed: () => _scrollController.animateTo(
-                    _scrollController.initialScrollOffset,
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.linear,
-                  ))
+              onPressed: () {
+                final initialOffset = _scrollController.initialScrollOffset;
+
+                if (_scrollController.offset > 10000) {
+                  return _scrollController.jumpTo(initialOffset);
+                }
+
+                _scrollController.animateTo(
+                  _scrollController.initialScrollOffset,
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.ease,
+                );
+              })
           : null,
       body: SafeArea(
         child: CustomScrollView(
@@ -86,6 +111,34 @@ class _PatientsPageState extends State<PatientsPage> {
             const SliverToBoxAdapter(child: Gap.h08),
             const PatientsListView(),
             const SliverToBoxAdapter(child: Gap.h08),
+            SliverToBoxAdapter(
+              child: Visibility(
+                visible: _loading,
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                child: SizedBox(
+                  height: 75,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      SizedBox(
+                          height: 25,
+                          width: 25,
+                          child: CircularProgressIndicator.adaptive(
+                            backgroundColor: ColorName.deepBlue,
+                            valueColor:
+                                AlwaysStoppedAnimation(ColorName.deepOrange),
+                          )),
+                      Gap.w16,
+                      Text('Loading more...',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w500))
+                    ],
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),
