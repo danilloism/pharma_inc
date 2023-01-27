@@ -10,28 +10,33 @@ class PatientsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            floating: true,
-            toolbarHeight: _toolbarHeight,
-            title: SizedBox(
-              height: _toolbarHeight * 2,
-              child: Assets.logo.image(
-                fit: BoxFit.fitHeight,
-                isAntiAlias: true,
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              floating: true,
+              snap: true,
+              toolbarHeight: _toolbarHeight,
+              title: Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: SizedBox(
+                  height: _toolbarHeight * 2,
+                  child: Assets.logo.image(
+                    fit: BoxFit.fitHeight,
+                    isAntiAlias: true,
+                  ),
+                ),
+              ),
+              bottom: AppBar(
+                toolbarHeight: _toolbarHeight,
+                title: const Search(),
               ),
             ),
-            bottom: AppBar(
-              toolbarHeight: _toolbarHeight,
-              title: const Search(),
-              elevation: 2,
-            ),
-          ),
-          const SliverToBoxAdapter(child: Gap.h08),
-          const PatientsListView(),
-          const SliverToBoxAdapter(child: Gap.h08),
-        ],
+            const SliverToBoxAdapter(child: Gap.h08),
+            const PatientsListView(),
+            const SliverToBoxAdapter(child: Gap.h08),
+          ],
+        ),
       ),
     );
   }
