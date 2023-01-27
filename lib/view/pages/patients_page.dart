@@ -4,14 +4,65 @@ import 'package:pharma_inc/view/widgets/gap.dart';
 import 'package:pharma_inc/view/widgets/patients_list_view.dart';
 import 'package:pharma_inc/view/widgets/search.dart';
 
-class PatientsPage extends StatelessWidget {
+const double _toolbarHeight = 90;
+
+class PatientsPage extends StatefulWidget {
   const PatientsPage({Key? key}) : super(key: key);
-  static const double _toolbarHeight = 90;
+
+  @override
+  State<PatientsPage> createState() => _PatientsPageState();
+}
+
+class _PatientsPageState extends State<PatientsPage> {
+  late final ScrollController _scrollController;
+  var _showGoToTopButton = false;
+
+  @override
+  void initState() {
+    _scrollController = ScrollController()..addListener(_controllerListener);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController
+      ..removeListener(_controllerListener)
+      ..dispose();
+    super.dispose();
+  }
+
+  void _controllerListener() {
+    void switchState(bool value) {
+      setState(() {
+        _showGoToTopButton = value;
+      });
+    }
+
+    if (_scrollController.offset > 0) {
+      switchState(true);
+    }
+
+    if (_scrollController.offset == _scrollController.initialScrollOffset) {
+      switchState(false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: _showGoToTopButton
+          ? FloatingActionButton(
+              tooltip: 'Go to top',
+              child: const Icon(Icons.arrow_upward),
+              onPressed: () => _scrollController.animateTo(
+                    _scrollController.initialScrollOffset,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.linear,
+                  ))
+          : null,
       body: SafeArea(
         child: CustomScrollView(
+          controller: _scrollController,
           slivers: [
             SliverAppBar(
               floating: true,
