@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pharma_inc/generated/colors.gen.dart';
 import 'package:pharma_inc/models/patient.dart';
+import 'package:pharma_inc/view/widgets/patient_info.dart';
 
 import 'gap.dart';
 
@@ -19,7 +20,7 @@ class PatientCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => showPatientInfo(context, patient),
       child: DecoratedBox(
         decoration: const BoxDecoration(
           border: Border.fromBorderSide(

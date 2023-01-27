@@ -17,23 +17,21 @@ class PatientsPage extends ConsumerStatefulWidget {
 }
 
 class _PatientsPageState extends ConsumerState<PatientsPage> {
-  late final ScrollController _scrollController;
+  late final ScrollController _scroll;
   var _showGoToTopButton = false;
   var _loading = false;
 
   @override
   void initState() {
-    _scrollController = ScrollController()
+    _scroll = ScrollController()
       ..addListener(() {
-        if (_scrollController.offset == _scrollController.initialScrollOffset) {
+        if (_scroll.offset == _scroll.initialScrollOffset) {
           return _setShowButton(false);
         }
 
         _setShowButton(true);
 
-        if (_scrollController.offset ==
-                _scrollController.position.maxScrollExtent &&
-            !_loading) {
+        if (_scroll.offset == _scroll.position.maxScrollExtent && !_loading) {
           _setLoading(true);
           ref
               .read(PatientsProvider.stateNotifierProvider.notifier)
@@ -48,7 +46,7 @@ class _PatientsPageState extends ConsumerState<PatientsPage> {
 
   @override
   void dispose() {
-    _scrollController.dispose();
+    _scroll.dispose();
     super.dispose();
   }
 
@@ -72,14 +70,14 @@ class _PatientsPageState extends ConsumerState<PatientsPage> {
               tooltip: 'Go to top',
               child: const Icon(Icons.arrow_upward),
               onPressed: () {
-                final initialOffset = _scrollController.initialScrollOffset;
+                final initialOffset = _scroll.initialScrollOffset;
 
-                if (_scrollController.offset > 10000) {
-                  return _scrollController.jumpTo(initialOffset);
+                if (_scroll.offset > 10000) {
+                  return _scroll.jumpTo(initialOffset);
                 }
 
-                _scrollController.animateTo(
-                  _scrollController.initialScrollOffset,
+                _scroll.animateTo(
+                  initialOffset,
                   duration: const Duration(milliseconds: 500),
                   curve: Curves.ease,
                 );
@@ -87,16 +85,16 @@ class _PatientsPageState extends ConsumerState<PatientsPage> {
           : null,
       body: SafeArea(
         child: CustomScrollView(
-          controller: _scrollController,
+          controller: _scroll,
           slivers: [
             SliverAppBar(
               floating: true,
               snap: true,
               toolbarHeight: _toolbarHeight,
               title: Padding(
-                padding: const EdgeInsets.only(top: 12),
+                padding: const EdgeInsets.only(top: 16),
                 child: SizedBox(
-                  height: _toolbarHeight * 2,
+                  height: _toolbarHeight * 2 - 4,
                   child: Assets.logo.image(
                     fit: BoxFit.fitHeight,
                     isAntiAlias: true,
