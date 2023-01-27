@@ -27,8 +27,8 @@ class _PatientInfo extends StatelessWidget {
                 color: ColorName.white,
                 boxShadow: [
                   BoxShadow(
-                    spreadRadius: 0.2,
-                    blurRadius: 3,
+                    spreadRadius: 1,
+                    blurRadius: 10,
                   ),
                 ],
               ),
