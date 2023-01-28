@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharma_inc/generated/assets.gen.dart';
 import 'package:pharma_inc/generated/colors.gen.dart';
-import 'package:pharma_inc/provider/patients_provider.dart';
+import 'package:pharma_inc/patients_notifier.dart';
+import 'package:pharma_inc/services/di.dart';
 import 'package:pharma_inc/view/widgets/gap.dart';
 import 'package:pharma_inc/view/widgets/patients_list_view.dart';
 import 'package:pharma_inc/view/widgets/search.dart';
 
 const double _toolbarHeight = 90;
 
-class PatientsPage extends ConsumerStatefulWidget {
+class PatientsPage extends StatefulWidget {
   const PatientsPage({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<PatientsPage> createState() => _PatientsPageState();
+  State<PatientsPage> createState() => _PatientsPageState();
 }
 
-class _PatientsPageState extends ConsumerState<PatientsPage> {
+class _PatientsPageState extends State<PatientsPage> {
   late final ScrollController _scroll;
   var _showGoToTopButton = false;
   var _loading = false;
@@ -33,10 +33,7 @@ class _PatientsPageState extends ConsumerState<PatientsPage> {
 
         if (_scroll.offset == _scroll.position.maxScrollExtent && !_loading) {
           _setLoading(true);
-          ref
-              .read(PatientsProvider.stateNotifierProvider.notifier)
-              .loadPatients()
-              .then((_) {
+          it.get<PatientsNotifier>().loadOrRefreshData().then((_) {
             _setLoading(false);
           });
         }

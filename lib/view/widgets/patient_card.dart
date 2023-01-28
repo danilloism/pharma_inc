@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pharma_inc/generated/colors.gen.dart';
 import 'package:pharma_inc/models/patient.dart';
@@ -31,17 +32,21 @@ class PatientCard extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding:
-              const EdgeInsets.only(left: 12, right: 12, top: 4, bottom: 4),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
           child: Row(
             children: [
               SizedBox(
                 height: 100,
+                width: 100,
                 child: Padding(
                   padding: const EdgeInsets.all(4),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(100),
-                    child: Image.network(patient.picture, fit: BoxFit.cover),
+                    child: CachedNetworkImage(
+                      imageUrl: patient.picture,
+                      placeholder: (context, url) =>
+                          const ColoredBox(color: ColorName.softOrange),
+                    ),
                   ),
                 ),
               ),

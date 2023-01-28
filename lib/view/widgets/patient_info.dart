@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pharma_inc/generated/colors.gen.dart';
 import 'package:pharma_inc/models/patient.dart';
@@ -38,7 +39,7 @@ class _PatientInfo extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: CircleAvatar(
               radius: radius,
-              backgroundImage: NetworkImage(patient.picture),
+              backgroundImage: CachedNetworkImageProvider(patient.picture),
             ),
           ),
         ],

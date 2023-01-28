@@ -8,6 +8,7 @@ import 'repository.dart';
 class PatientRepository implements Repository {
   PatientRepository({required this.dioClient});
 
+  @override
   final Dio dioClient;
 
   @override

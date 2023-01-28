@@ -1,40 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pharma_inc/provider/patients_provider.dart';
-import 'package:pharma_inc/state/patients_state.dart';
+import 'package:pharma_inc/models/patient.dart';
+import 'package:pharma_inc/patients_notifier.dart';
+import 'package:pharma_inc/services/di.dart';
 import 'package:pharma_inc/view/widgets/patient_card.dart';
 
-class PatientsListView extends ConsumerWidget {
+class PatientsListView extends StatelessWidget {
   const PatientsListView({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(PatientsProvider.stateNotifierProvider);
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<List<Patient>>(
+        valueListenable: it.get<PatientsNotifier>(),
+        builder: (context, patients, _) {
+          return SliverList(
+            delegate: SliverChildBuilderDelegate(
+              childCount: patients.length * 2 - 1,
+              (context, index) {
+                if (index.isEven) {
+                  final int realIndex = index ~/ 2;
 
-    if (state == PatientsState.loading) {
-      return const SliverToBoxAdapter(
-          child: Center(child: CircularProgressIndicator()));
-    }
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4),
+                    child: PatientCard(patient: patients[realIndex]),
+                  );
+                }
 
-    final notifierProvider =
-        ref.read(PatientsProvider.stateNotifierProvider.notifier);
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-          childCount: notifierProvider.currentPatients.length,
-          (context, index) {
-        if (index < notifierProvider.currentPatients.length - 1) {
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 6, left: 4, right: 4),
-            child:
-                PatientCard(patient: notifierProvider.currentPatients[index]),
+                return const SizedBox(height: 4);
+              },
+              semanticIndexCallback: (Widget widget, int localIndex) {
+                if (localIndex.isEven) {
+                  return localIndex ~/ 2;
+                }
+                return null;
+              },
+            ),
           );
-        }
-
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4),
-          child: PatientCard(patient: notifierProvider.currentPatients[index]),
-        );
-      }),
-    );
+        });
   }
 }
