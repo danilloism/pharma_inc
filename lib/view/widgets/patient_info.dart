@@ -10,7 +10,7 @@ class _PatientInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final screenHeight = screenSize.height;
-    final double radius = screenHeight * 0.08;
+    final double radius = screenHeight * 0.1;
     final bottomSheetHeight = screenHeight * 0.9;
 
     return SizedBox(

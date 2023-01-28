@@ -33,11 +33,8 @@ Future<void> main() async {
         theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: ColorName.softBlue),
             useMaterial3: true,
-            scaffoldBackgroundColor: Colors.white,
             appBarTheme: const AppBarTheme(
               centerTitle: true,
-              elevation: 0,
-              color: Colors.white,
             )),
       ),
     ),
