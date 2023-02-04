@@ -10,14 +10,6 @@ class PatientCard extends StatelessWidget {
   const PatientCard({super.key, required this.patient});
   final Patient patient;
 
-  String get _formattedDob {
-    String withInitialZero(int value) {
-      return value < 10 ? '0$value' : value.toString();
-    }
-
-    return '${withInitialZero(patient.dayOfBirth.day)}/${withInitialZero(patient.dayOfBirth.month)}/${patient.dayOfBirth.year}';
-  }
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -63,7 +55,7 @@ class PatientCard extends StatelessWidget {
                         fontSize: 16,
                       ),
                     ),
-                    Text('${patient.age} years old'),
+                    Text('${patient.dob.age} years old'),
                     Gap.h28,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -72,7 +64,7 @@ class PatientCard extends StatelessWidget {
                           patient.gender,
                           style: const TextStyle(fontWeight: FontWeight.w500),
                         ),
-                        Text(_formattedDob),
+                        Text(patient.dob.toString()),
                       ],
                     ),
                   ],

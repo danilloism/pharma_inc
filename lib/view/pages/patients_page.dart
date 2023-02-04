@@ -101,6 +101,7 @@ class _PatientsPageState extends State<PatientsPage> {
               bottom: AppBar(
                 toolbarHeight: _toolbarHeight,
                 title: const Search(),
+                shadowColor: ColorName.deepBlue,
               ),
             ),
             const SliverToBoxAdapter(child: Gap.h08),

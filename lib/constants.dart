@@ -1,1 +1,1 @@
-const apiUrl = 'https://randomuser.me/api/';
+const userApiUrl = 'https://randomuser.me/api/';

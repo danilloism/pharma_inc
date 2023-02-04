@@ -13,6 +13,6 @@ void setupDiContainer() {
 
   it.registerSingletonAsync<PatientsNotifier>(
     () => PatientsNotifier.init(it()),
-    dispose: (param) => param.dispose(),
+    dispose: (notifier) => notifier.dispose(),
   );
 }

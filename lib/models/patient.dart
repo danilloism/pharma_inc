@@ -1,4 +1,6 @@
+import 'package:pharma_inc/helpers.dart';
 import 'package:pharma_inc/models/address.dart';
+import 'package:pharma_inc/models/day_of_birth.dart';
 import 'package:pharma_inc/models/id.dart';
 import 'package:pharma_inc/models/name.dart';
 
@@ -13,13 +15,12 @@ class Patient {
   final String picture;
   final String email;
   final String gender;
-  final DateTime dayOfBirth;
+  final DayOfBirth dob;
   final String phone;
   final String nationality;
   final Address address;
 
   String get name => _name.toString();
-  int get age => DateTime.now().year - dayOfBirth.year;
 
   const Patient({
     required this.id,
@@ -27,21 +28,25 @@ class Patient {
     required this.picture,
     required this.email,
     required this.gender,
-    required this.dayOfBirth,
+    required this.dob,
     required this.phone,
     required this.nationality,
     required this.address,
   }) : _name = name;
 
-  factory Patient.fromJson(Map<String, dynamic> json) => Patient(
-        id: Id.fromJson(json['id']),
-        name: Name.fromJson(json['name']),
-        picture: json['picture']['large'],
-        email: json['email'],
-        gender: (json['gender'] as String).capitalized,
-        dayOfBirth: DateTime.parse(json['dob']['date']),
-        phone: json['phone'],
-        nationality: json['nat'],
-        address: Address.fromJson(json['location']),
-      );
+  factory Patient.fromJson(Map<String, dynamic> json) {
+    final nat = formatNationalityByCode(json['nat']);
+
+    return Patient(
+      id: Id.fromJson(json['id']),
+      name: Name.fromJson(json['name']),
+      picture: json['picture']['large'],
+      email: json['email'],
+      gender: (json['gender'] as String).capitalized,
+      dob: DayOfBirth.fromJson(json['dob']),
+      phone: json['phone'],
+      nationality: nat,
+      address: Address.fromJson(json['location']),
+    );
+  }
 }

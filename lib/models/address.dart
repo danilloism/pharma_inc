@@ -29,6 +29,10 @@ class Address {
   //TODO: melhorar método
   @override
   String toString() {
-    return 'AddressModel(streetNumber: $streetNumber, streetName: $streetName, city: $city, state: $state, country: $country, postcode: $postcode)';
+    final buffer = StringBuffer()..writeln('$streetNumber $streetName');
+    buffer.writeln('$city, $state $postcode');
+    buffer.write(country);
+
+    return buffer.toString();
   }
 }

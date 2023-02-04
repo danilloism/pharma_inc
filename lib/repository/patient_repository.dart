@@ -8,16 +8,13 @@ import 'repository.dart';
 class PatientRepository implements Repository {
   PatientRepository({required this.dioClient});
 
-  @override
   final Dio dioClient;
 
   @override
   Future<List<Patient>> get(int page) async {
     try {
-      // final queryParams =
-      //     '?page=$page&results=50&seed=dnn&exc=login,registered,cell';
       final res = await dioClient.get(
-        apiUrl,
+        userApiUrl,
         queryParameters: {
           'page': page,
           'results': 50,
@@ -28,7 +25,7 @@ class PatientRepository implements Repository {
 
       if (res.statusCode == 200) {
         return List.unmodifiable((res.data['results'] as List)
-            .map((pacient) => Patient.fromJson(pacient)));
+            .map((patient) => Patient.fromJson(patient)));
       } else {
         throw CustomHttpException(
           code: res.statusCode!,
