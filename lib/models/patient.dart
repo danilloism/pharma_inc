@@ -1,4 +1,3 @@
-import 'package:pharma_inc/helpers.dart';
 import 'package:pharma_inc/models/address.dart';
 import 'package:pharma_inc/models/day_of_birth.dart';
 import 'package:pharma_inc/models/id.dart';
@@ -35,8 +34,6 @@ class Patient {
   }) : _name = name;
 
   factory Patient.fromJson(Map<String, dynamic> json) {
-    final nat = formatNationalityByCode(json['nat']);
-
     return Patient(
       id: Id.fromJson(json['id']),
       name: Name.fromJson(json['name']),
@@ -45,7 +42,7 @@ class Patient {
       gender: (json['gender'] as String).capitalized,
       dob: DayOfBirth.fromJson(json['dob']),
       phone: json['phone'],
-      nationality: nat,
+      nationality: json['nat'],
       address: Address.fromJson(json['location']),
     );
   }

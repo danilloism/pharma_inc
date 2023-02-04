@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pharma_inc/generated/colors.gen.dart';
+import 'package:pharma_inc/helpers.dart';
 import 'package:pharma_inc/models/patient.dart';
 import 'package:pharma_inc/view/widgets/gap.dart';
 import 'package:pharma_inc/view/widgets/info.dart';
@@ -75,7 +76,11 @@ class _PatientInfo extends StatelessWidget {
                               bottom: patient.dob.toString()),
                           Info(top: 'Age', bottom: patient.dob.age.toString()),
                           Info(top: 'Phone', bottom: patient.phone),
-                          Info(top: 'Nationality', bottom: patient.nationality),
+                          Info(
+                            top: 'Nationality',
+                            bottom:
+                                formatNationalityByCode(patient.nationality),
+                          ),
                           Info(
                             top: 'Address',
                             bottom: patient.address.toString(),

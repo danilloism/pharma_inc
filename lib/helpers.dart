@@ -8,7 +8,7 @@ String formatNationalityByCode(String alphaTwoCode) {
     final flag = country.flagEmoji;
     final nat = country.nationality;
 
-    return '$flag | $alphaTwoCode - $nat';
+    return '$flag | $nat';
   } catch (_) {
     return alphaTwoCode;
   }
