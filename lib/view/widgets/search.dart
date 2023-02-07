@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pharma_inc/debouncer.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pharma_inc/bloc/filter_cubit.dart';
+import 'package:pharma_inc/gender.dart';
 import 'package:pharma_inc/generated/colors.gen.dart';
 
 class Search extends StatefulWidget {
@@ -11,18 +13,15 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   late final TextEditingController _controller;
-  late final Debouncer _debouncer;
 
   @override
   void initState() {
-    _debouncer = Debouncer(const Duration(seconds: 2));
     _controller = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
-    _debouncer.dispose();
     _controller.dispose();
     super.dispose();
   }
@@ -46,7 +45,8 @@ class _SearchState extends State<Search> {
         ),
         IconButton(
           color: ColorName.deepOrange,
-          onPressed: () {},
+          onPressed: () =>
+              context.read<FilterCubit>().changeGenderFilter(Gender.female),
           icon: const Icon(Icons.filter_alt),
         )
       ],

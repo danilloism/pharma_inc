@@ -5,6 +5,8 @@ part 'patients_state.freezed.dart';
 
 @freezed
 class PatientsState with _$PatientsState {
+  const PatientsState._();
+
   const factory PatientsState.loading({@Default([]) List<Patient> patients}) =
       PatientsLoading;
   const factory PatientsState.data(List<Patient> patients) = PatientsData;
@@ -15,4 +17,7 @@ class PatientsState with _$PatientsState {
     Object? error,
     Object? stackTrace,
   }) = PatientsError;
+
+  bool get isRefreshing =>
+      maybeWhen(refreshing: (_) => true, orElse: () => false);
 }

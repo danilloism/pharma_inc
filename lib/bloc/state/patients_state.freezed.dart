@@ -146,9 +146,10 @@ class __$$PatientsLoadingCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PatientsLoading implements PatientsLoading {
+class _$PatientsLoading extends PatientsLoading {
   const _$PatientsLoading({final List<Patient> patients = const []})
-      : _patients = patients;
+      : _patients = patients,
+        super._();
 
   final List<Patient> _patients;
   @override
@@ -262,9 +263,10 @@ class _$PatientsLoading implements PatientsLoading {
   }
 }
 
-abstract class PatientsLoading implements PatientsState {
+abstract class PatientsLoading extends PatientsState {
   const factory PatientsLoading({final List<Patient> patients}) =
       _$PatientsLoading;
+  const PatientsLoading._() : super._();
 
   @override
   List<Patient> get patients;
@@ -309,8 +311,10 @@ class __$$PatientsDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PatientsData implements PatientsData {
-  const _$PatientsData(final List<Patient> patients) : _patients = patients;
+class _$PatientsData extends PatientsData {
+  const _$PatientsData(final List<Patient> patients)
+      : _patients = patients,
+        super._();
 
   final List<Patient> _patients;
   @override
@@ -423,8 +427,9 @@ class _$PatientsData implements PatientsData {
   }
 }
 
-abstract class PatientsData implements PatientsState {
+abstract class PatientsData extends PatientsState {
   const factory PatientsData(final List<Patient> patients) = _$PatientsData;
+  const PatientsData._() : super._();
 
   @override
   List<Patient> get patients;
@@ -469,9 +474,10 @@ class __$$PatientsRefreshingCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PatientsRefreshing implements PatientsRefreshing {
+class _$PatientsRefreshing extends PatientsRefreshing {
   const _$PatientsRefreshing(final List<Patient> patients)
-      : _patients = patients;
+      : _patients = patients,
+        super._();
 
   final List<Patient> _patients;
   @override
@@ -585,9 +591,10 @@ class _$PatientsRefreshing implements PatientsRefreshing {
   }
 }
 
-abstract class PatientsRefreshing implements PatientsState {
+abstract class PatientsRefreshing extends PatientsState {
   const factory PatientsRefreshing(final List<Patient> patients) =
       _$PatientsRefreshing;
+  const PatientsRefreshing._() : super._();
 
   @override
   List<Patient> get patients;
@@ -636,10 +643,11 @@ class __$$PatientsErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PatientsError implements PatientsError {
+class _$PatientsError extends PatientsError {
   const _$PatientsError(
       {final List<Patient> patients = const [], this.error, this.stackTrace})
-      : _patients = patients;
+      : _patients = patients,
+        super._();
 
   final List<Patient> _patients;
   @override
@@ -764,11 +772,12 @@ class _$PatientsError implements PatientsError {
   }
 }
 
-abstract class PatientsError implements PatientsState {
+abstract class PatientsError extends PatientsState {
   const factory PatientsError(
       {final List<Patient> patients,
       final Object? error,
       final Object? stackTrace}) = _$PatientsError;
+  const PatientsError._() : super._();
 
   @override
   List<Patient> get patients;

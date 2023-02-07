@@ -70,7 +70,9 @@ class _PatientInfo extends StatelessWidget {
                       padding: const EdgeInsets.all(24),
                       child: ListView(
                         children: [
-                          Info(top: 'Gender', bottom: patient.gender),
+                          Info(
+                              top: 'Gender',
+                              bottom: patient.gender.capitalized),
                           Info(
                               top: 'Birth date',
                               bottom: patient.dob.toString()),

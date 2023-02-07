@@ -61,7 +61,7 @@ class PatientCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          patient.gender,
+                          patient.gender.capitalized,
                           style: const TextStyle(fontWeight: FontWeight.w500),
                         ),
                         Text(patient.dob.toString()),

@@ -1,3 +1,4 @@
+import 'package:pharma_inc/gender.dart';
 import 'package:pharma_inc/models/address.dart';
 import 'package:pharma_inc/models/day_of_birth.dart';
 import 'package:pharma_inc/models/id.dart';
@@ -13,7 +14,7 @@ class Patient {
   final Name _name;
   final String picture;
   final String email;
-  final String gender;
+  final Gender gender;
   final DayOfBirth dob;
   final String phone;
   final String nationality;
@@ -39,7 +40,8 @@ class Patient {
       name: Name.fromJson(json['name']),
       picture: json['picture']['large'],
       email: json['email'],
-      gender: (json['gender'] as String).capitalized,
+      gender: Gender.values
+          .singleWhere((gender) => gender.name == (json['gender'] as String)),
       dob: DayOfBirth.fromJson(json['dob']),
       phone: json['phone'],
       nationality: json['nat'],
