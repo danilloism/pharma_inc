@@ -66,8 +66,8 @@ void main() async {
         httpOkResponse.statusMessage = 'Bad Request';
         httpOkResponse.data = null;
 
-        expectLater(
-          repository.get(1),
+        await expectLater(
+          () => repository.get(1),
           throwsA(
             isA<CustomHttpException>()
                 .having(
