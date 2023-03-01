@@ -35,7 +35,9 @@ class _PatientsPageState extends State<PatientsPage> {
         _setShowButton(true);
 
         if (_scroll.offset == _scroll.position.maxScrollExtent &&
-            widget.patientsBloc.state is! PatientsRefreshing) {
+            widget.patientsBloc.state is! PatientsRefreshing &&
+            widget.patientsBloc.state is! PatientsError &&
+            widget.patientsBloc.state is! PatientsRetryLoading) {
           widget.patientsBloc.add(const ScrollHasReachedMax());
         }
       });
@@ -100,48 +102,92 @@ class _PatientsPageState extends State<PatientsPage> {
               shadowColor: ColorName.deepBlue,
             ),
           ),
-          const SliverToBoxAdapter(child: Gap.h08),
-          const PatientsListView(),
-          const SliverToBoxAdapter(child: Gap.h08),
-          SliverToBoxAdapter(
-            child: BlocBuilder<PatientsBloc, PatientsState>(
-              buildWhen: (previous, current) =>
-                  current.maybeWhen(
-                    refreshing: (_) => true,
-                    orElse: () => false,
-                  ) ||
-                  previous.maybeWhen(
-                    refreshing: (_) => true,
-                    orElse: () => false,
-                  ),
-              builder: (context, state) => Visibility(
-                visible: state.isRefreshing,
-                maintainSize: true,
-                maintainAnimation: true,
-                maintainState: true,
-                child: SizedBox(
-                  height: 75,
-                  child: Row(
+          BlocBuilder<PatientsBloc, PatientsState>(
+            buildWhen: (previous, current) => current.maybeWhen(
+              data: (_) => previous is PatientsRetryLoading,
+              retryLoading: (_) => true,
+              error: (_, __, ___) => true,
+              orElse: () => false,
+            ),
+            builder: (context, state) {
+              return state.maybeWhen(
+                error: (_, __, ___) => SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      SizedBox(
-                          height: 25,
-                          width: 25,
-                          child: CircularProgressIndicator.adaptive(
-                            backgroundColor: ColorName.deepBlue,
-                            valueColor:
-                                AlwaysStoppedAnimation(ColorName.deepOrange),
-                          )),
-                      Gap.w16,
-                      Text('Loading more...',
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w500))
+                    children: [
+                      const Text(
+                        'An error ocurred while loading the data.',
+                        textAlign: TextAlign.center,
+                      ),
+                      ElevatedButton(
+                        onPressed: () => context
+                            .read<PatientsBloc>()
+                            .add(const RetryButtonPressed()),
+                        child: const Text('Retry'),
+                      ),
                     ],
                   ),
                 ),
-              ),
-            ),
-          )
+                retryLoading: (_) => const SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+                orElse: () => SliverToBoxAdapter(
+                  child: CustomScrollView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    slivers: [
+                      const SliverToBoxAdapter(child: Gap.h08),
+                      const PatientsListView(),
+                      const SliverToBoxAdapter(child: Gap.h08),
+                      SliverToBoxAdapter(
+                        child: BlocBuilder<PatientsBloc, PatientsState>(
+                          buildWhen: (previous, current) =>
+                              previous.isRefreshing || current.isRefreshing,
+                          builder: (context, state) => Visibility(
+                            visible: state.isRefreshing,
+                            maintainSize: true,
+                            maintainAnimation: true,
+                            maintainState: true,
+                            child: SizedBox(
+                              height: 75,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  SizedBox(
+                                    height: 25,
+                                    width: 25,
+                                    child: CircularProgressIndicator.adaptive(
+                                      backgroundColor: ColorName.deepBlue,
+                                      valueColor: AlwaysStoppedAnimation(
+                                        ColorName.deepOrange,
+                                      ),
+                                    ),
+                                  ),
+                                  Gap.w16,
+                                  Text(
+                                    'Loading more...',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
         ],
       ),
     );
