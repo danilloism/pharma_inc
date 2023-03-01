@@ -18,8 +18,8 @@ class PatientsBloc extends Bloc<PatientsListEvent, PatientsState> {
 
         await emit.forEach<FilterState>(
           filters,
-          onData: (data) {
-            _currentFilter = data;
+          onData: (filter) {
+            _currentFilter = filter;
             return PatientsData(_filteredPatients);
           },
         );
@@ -46,25 +46,21 @@ class PatientsBloc extends Bloc<PatientsListEvent, PatientsState> {
   List<Patient> get _filteredPatients {
     final gender = _currentFilter.gender;
     final searchText = _currentFilter.searchText;
-    final patientsToFilter = [..._totalPatients];
+    var filteredPatients = [..._totalPatients];
 
-    if (gender == null && searchText == null) {
-      return patientsToFilter;
+    if (gender != null) {
+      filteredPatients = filteredPatients
+          .where((element) => element.gender == gender)
+          .toList();
     }
 
-    final List<Patient> filteredByGender = gender == null
-        ? patientsToFilter
-        : patientsToFilter
-            .where((element) => element.gender == gender)
-            .toList();
+    if (searchText != null) {
+      filteredPatients = filteredPatients
+          .where((element) =>
+              element.name.toLowerCase().contains(searchText.toLowerCase()))
+          .toList();
+    }
 
-    final List<Patient> filteredByName = searchText == null
-        ? filteredByGender
-        : filteredByGender
-            .where((element) =>
-                element.name.toLowerCase().contains(searchText.toLowerCase()))
-            .toList();
-
-    return filteredByName;
+    return filteredPatients;
   }
 }
