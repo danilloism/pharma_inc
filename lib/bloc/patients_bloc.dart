@@ -12,9 +12,13 @@ class PatientsBloc extends Bloc<PatientsListEvent, PatientsState> {
       : super(const PatientsLoading()) {
     on<AppInitialized>(
       (event, emit) async {
-        final patients = await repo.get(_requestPage);
-        _requestPage++;
-        emit(PatientsData(_totalPatients..addAll(patients)));
+        try {
+          final patients = await repo.get(_requestPage);
+          _requestPage++;
+          emit(PatientsData(_totalPatients..addAll(patients)));
+        } catch (e) {
+          emit(PatientsError(patients: _totalPatients, error: e));
+        }
 
         await emit.forEach<FilterState>(
           filters,
@@ -29,12 +33,16 @@ class PatientsBloc extends Bloc<PatientsListEvent, PatientsState> {
       (event, emit) async {
         emit(PatientsRefreshing(state.patients));
 
-        final patients = await repo.get(_requestPage);
-        _requestPage++;
+        try {
+          final patients = await repo.get(_requestPage);
+          _requestPage++;
 
-        _totalPatients.addAll(patients);
+          _totalPatients.addAll(patients);
 
-        emit(PatientsData(_filteredPatients));
+          emit(PatientsData(_filteredPatients));
+        } catch (e) {
+          emit(PatientsError(patients: state.patients, error: e));
+        }
       },
     );
   }
