@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:pharma_inc/generated/colors.gen.dart';
+import 'package:pharma_inc/generated_assets/colors.gen.dart';
 import 'package:pharma_inc/models/patient.dart';
 import 'package:pharma_inc/view/widgets/patient_info.dart';
 

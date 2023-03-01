@@ -29,7 +29,7 @@ dev_dependencies:
   bloc_test: ^9.1.1
 
 flutter_gen:
-  output: lib/generated
+  output: lib/generated_assets
   colors:
     inputs:
       - assets/colors.xml

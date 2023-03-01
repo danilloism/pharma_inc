@@ -8,7 +8,7 @@ import 'package:pharma_inc/bloc/events/patients_list_event.dart';
 import 'package:pharma_inc/bloc/filter_bloc.dart';
 import 'package:pharma_inc/bloc/patients_bloc.dart';
 import 'package:pharma_inc/bloc/state/patients_state.dart';
-import 'package:pharma_inc/generated/colors.gen.dart';
+import 'package:pharma_inc/generated_assets/colors.gen.dart';
 import 'package:pharma_inc/repository/patient_repository.dart';
 import 'package:pharma_inc/view/pages/patients_page.dart';
 import 'package:pharma_inc/view/pages/splash_screen.dart';
