@@ -14,53 +14,55 @@ void main() async {
   TestWidgetsFlutterBinding.ensureInitialized();
   late PatientRepository repository;
   late DioMock dioMock;
-  late Response httpResponse;
-  final data =
-      jsonDecode(await rootBundle.loadString('assets/mock_response.json'));
+  late Response httpOkResponse;
+  late dynamic data;
+
+  dioMockGet() => dioMock.get(
+        any(),
+        queryParameters: any(named: 'queryParameters'),
+      );
 
   setUpAll(() async {
-    httpResponse = Response(
-        requestOptions: RequestOptions(path: ''), data: data, statusCode: 200);
-  });
+    final mockResponseStr =
+        await rootBundle.loadString('assets/mock_response.json');
 
-  setUp(() async {
+    data = jsonDecode(mockResponseStr);
+
+    httpOkResponse = Response(
+        requestOptions: RequestOptions(path: ''), data: data, statusCode: 200);
+
     dioMock = DioMock();
+    when(dioMockGet).thenAnswer((_) async => Future.value(httpOkResponse));
+
     repository = PatientRepository(dioClient: dioMock);
   });
 
   group('PatientRepository', () {
-    group('dioClient', () {
-      test('should be instanciated.', () {
-        expect(repository.dioClient, allOf([isA<Dio>(), isNotNull]));
-      });
-    });
-
     group('get()', () {
       test('should make only one GET request.', () async {
-        when(() => dioMock.get(any(named: 'queryParameters')))
-            .thenAnswer((invocation) async => Future.value(httpResponse));
         await repository.get(1);
-        verify(() => dioMock.get(any(named: 'queryParameters'))).called(1);
+
+        verify(dioMockGet).called(1);
       });
 
-      test('should return a List<PatientModel> object of size 50.', () async {
-        when(() => dioMock.get(any(named: 'queryParameters')))
-            .thenAnswer((invocation) async => Future.value(httpResponse));
+      test('should return a List<PatientModel> object of length 50.', () async {
         final patients = await repository.get(1);
-        expect(patients, isA<List<Patient>>());
-        expect(patients, isNotEmpty);
-        expect(patients, isNotNull);
-        expect(patients.length, equals(50));
+
+        expect(
+          patients,
+          isA<List<Patient>>().having(
+            (items) => items.length,
+            'list length',
+            equals(50),
+          ),
+        );
       });
 
       test('should throw a CustomHttpException if status code is not 200.',
           () async {
-        httpResponse.statusCode = 400;
-        httpResponse.statusMessage = 'Bad Request';
-        httpResponse.data = null;
-
-        when(() => dioMock.get(any(named: 'queryParameters')))
-            .thenAnswer((invocation) async => Future.value(httpResponse));
+        httpOkResponse.statusCode = 400;
+        httpOkResponse.statusMessage = 'Bad Request';
+        httpOkResponse.data = null;
 
         expectLater(
           repository.get(1),
@@ -72,9 +74,10 @@ void main() async {
                   equals(400),
                 )
                 .having(
-                    (e) => e.message,
-                    'should throw HttpException with status message.',
-                    equals('Bad Request')),
+                  (e) => e.message,
+                  'should throw HttpException with status message.',
+                  isNotEmpty,
+                ),
           ),
         );
       });

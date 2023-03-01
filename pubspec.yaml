@@ -9,21 +9,21 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.5
-  dio: ^4.0.6
-  get_it: ^7.2.0
+  dio: ^5.0.1
   cached_network_image: ^3.2.3
   country: ^2.0.6
   intl: ^0.18.0
   freezed_annotation: ^2.2.0
-  bloc: ^8.1.0
-  flutter_bloc: ^8.1.1
+  bloc: ^8.1.1
+  flutter_bloc: ^8.1.2
+  bloc_concurrency: ^0.2.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.1
   mocktail: ^0.3.0
-  flutter_gen_runner: ^5.1.0+1
+  flutter_gen_runner: ^5.2.0
   build_runner: ^2.3.3
   freezed: ^2.3.2
 
@@ -31,21 +31,19 @@ flutter_gen:
   output: lib/generated
   colors:
     inputs:
-      - assets/colors/colors.xml
+      - assets/colors.xml
 
 flutter:
   uses-material-design: true
   assets:
     - assets/logo.png
+    - assets/mock_response.json
+
+# To run scripts you must have the package "derry" set active globally
 scripts:
   gen: flutter pub run build_runner build --delete-conflicting-outputs
   gen_watch: flutter pub run build_runner watch --delete-conflicting-outputs
-  clean:
-    - flutter clean
-    - flutter pub get
-    - flutter pub upgrade
-    - derry gen
-  test: flutter test --coverage
-  update:
-    - flutter pub get
-    - flutter pub upgrade
+  get: flutter pub get
+  up: flutter pub upgrade
+  test: flutter test
+  test_c: flutter test --coverage

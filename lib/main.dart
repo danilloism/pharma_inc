@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharma_inc/bloc/events/patients_list_event.dart';
-import 'package:pharma_inc/bloc/filter_cubit.dart';
+import 'package:pharma_inc/bloc/filter_bloc.dart';
 import 'package:pharma_inc/bloc/patients_bloc.dart';
 import 'package:pharma_inc/bloc/state/patients_state.dart';
 import 'package:pharma_inc/generated/colors.gen.dart';
@@ -22,7 +22,7 @@ Future<void> main() async {
     throw UnimplementedError();
   }
 
-  final filterCubit = FilterCubit();
+  final filterBloc = FilterBloc();
 
   runApp(
     MultiBlocProvider(
@@ -30,10 +30,10 @@ Future<void> main() async {
         BlocProvider(
           create: (context) => PatientsBloc(
               repo: PatientRepository(dioClient: Dio()),
-              filters: filterCubit.stream)
+              filters: filterBloc.stream)
             ..add(const AppInitialized()),
         ),
-        BlocProvider.value(value: filterCubit),
+        BlocProvider.value(value: filterBloc),
       ],
       child: MaterialApp(
         home: const App(),

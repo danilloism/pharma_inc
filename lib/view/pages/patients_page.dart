@@ -54,6 +54,8 @@ class _PatientsPageState extends State<PatientsPage> {
     });
   }
 
+  void _jumpToStart() => _scroll.jumpTo(_scroll.initialScrollOffset);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +67,7 @@ class _PatientsPageState extends State<PatientsPage> {
                 final initialOffset = _scroll.initialScrollOffset;
 
                 if (_scroll.offset > 10000) {
-                  return _scroll.jumpTo(initialOffset);
+                  return _jumpToStart();
                 }
 
                 _scroll.animateTo(
@@ -75,74 +77,72 @@ class _PatientsPageState extends State<PatientsPage> {
                 );
               })
           : null,
-      body: SafeArea(
-        child: CustomScrollView(
-          controller: _scroll,
-          slivers: [
-            SliverAppBar(
-              floating: true,
-              snap: true,
-              toolbarHeight: _toolbarHeight,
-              title: Padding(
-                padding: const EdgeInsets.only(top: 16),
-                child: SizedBox(
-                  height: _toolbarHeight * 2 - 4,
-                  child: Assets.logo.image(
-                    fit: BoxFit.fitHeight,
-                    isAntiAlias: true,
-                  ),
+      body: CustomScrollView(
+        controller: _scroll,
+        slivers: [
+          SliverAppBar(
+            floating: true,
+            snap: true,
+            toolbarHeight: _toolbarHeight,
+            title: Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: SizedBox(
+                height: _toolbarHeight * 2 - 4,
+                child: Assets.logo.image(
+                  fit: BoxFit.fitHeight,
+                  isAntiAlias: true,
                 ),
-              ),
-              bottom: AppBar(
-                toolbarHeight: _toolbarHeight,
-                title: const Search(),
-                shadowColor: ColorName.deepBlue,
               ),
             ),
-            const SliverToBoxAdapter(child: Gap.h08),
-            const PatientsListView(),
-            const SliverToBoxAdapter(child: Gap.h08),
-            SliverToBoxAdapter(
-              child: BlocBuilder<PatientsBloc, PatientsState>(
-                buildWhen: (previous, current) =>
-                    current.maybeWhen(
-                      refreshing: (_) => true,
-                      orElse: () => false,
-                    ) ||
-                    previous.maybeWhen(
-                      refreshing: (_) => true,
-                      orElse: () => false,
-                    ),
-                builder: (context, state) => Visibility(
-                  visible: state.isRefreshing,
-                  maintainSize: true,
-                  maintainAnimation: true,
-                  maintainState: true,
-                  child: SizedBox(
-                    height: 75,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        SizedBox(
-                            height: 25,
-                            width: 25,
-                            child: CircularProgressIndicator.adaptive(
-                              backgroundColor: ColorName.deepBlue,
-                              valueColor:
-                                  AlwaysStoppedAnimation(ColorName.deepOrange),
-                            )),
-                        Gap.w16,
-                        Text('Loading more...',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w500))
-                      ],
-                    ),
+            bottom: AppBar(
+              toolbarHeight: _toolbarHeight,
+              title: Search(beforeSearchOrFilterApplied: _jumpToStart),
+              shadowColor: ColorName.deepBlue,
+            ),
+          ),
+          const SliverToBoxAdapter(child: Gap.h08),
+          const PatientsListView(),
+          const SliverToBoxAdapter(child: Gap.h08),
+          SliverToBoxAdapter(
+            child: BlocBuilder<PatientsBloc, PatientsState>(
+              buildWhen: (previous, current) =>
+                  current.maybeWhen(
+                    refreshing: (_) => true,
+                    orElse: () => false,
+                  ) ||
+                  previous.maybeWhen(
+                    refreshing: (_) => true,
+                    orElse: () => false,
+                  ),
+              builder: (context, state) => Visibility(
+                visible: state.isRefreshing,
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                child: SizedBox(
+                  height: 75,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      SizedBox(
+                          height: 25,
+                          width: 25,
+                          child: CircularProgressIndicator.adaptive(
+                            backgroundColor: ColorName.deepBlue,
+                            valueColor:
+                                AlwaysStoppedAnimation(ColorName.deepOrange),
+                          )),
+                      Gap.w16,
+                      Text('Loading more...',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w500))
+                    ],
                   ),
                 ),
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

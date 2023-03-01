@@ -5,6 +5,8 @@ part 'filter_event.freezed.dart';
 
 @freezed
 class FilterEvent with _$FilterEvent {
-  const factory FilterEvent.genderFilterChanged(Gender? val) =
+  const factory FilterEvent.genderFilterChanged(Gender? gender) =
       GenderFilterChanged;
+
+  const factory FilterEvent.searchTextChanged(String? text) = SearchTextChanged;
 }

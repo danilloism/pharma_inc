@@ -16,42 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$FilterEvent {
-  Gender? get val => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Gender? val) genderFilterChanged,
+    required TResult Function(Gender? gender) genderFilterChanged,
+    required TResult Function(String? text) searchTextChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Gender? val)? genderFilterChanged,
+    TResult? Function(Gender? gender)? genderFilterChanged,
+    TResult? Function(String? text)? searchTextChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Gender? val)? genderFilterChanged,
+    TResult Function(Gender? gender)? genderFilterChanged,
+    TResult Function(String? text)? searchTextChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GenderFilterChanged value) genderFilterChanged,
+    required TResult Function(SearchTextChanged value) searchTextChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GenderFilterChanged value)? genderFilterChanged,
+    TResult? Function(SearchTextChanged value)? searchTextChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GenderFilterChanged value)? genderFilterChanged,
+    TResult Function(SearchTextChanged value)? searchTextChanged,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $FilterEventCopyWith<FilterEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,8 +61,6 @@ abstract class $FilterEventCopyWith<$Res> {
   factory $FilterEventCopyWith(
           FilterEvent value, $Res Function(FilterEvent) then) =
       _$FilterEventCopyWithImpl<$Res, FilterEvent>;
-  @useResult
-  $Res call({Gender? val});
 }
 
 /// @nodoc
@@ -73,30 +72,15 @@ class _$FilterEventCopyWithImpl<$Res, $Val extends FilterEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? val = freezed,
-  }) {
-    return _then(_value.copyWith(
-      val: freezed == val
-          ? _value.val
-          : val // ignore: cast_nullable_to_non_nullable
-              as Gender?,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$GenderFilterChangedCopyWith<$Res>
-    implements $FilterEventCopyWith<$Res> {
+abstract class _$$GenderFilterChangedCopyWith<$Res> {
   factory _$$GenderFilterChangedCopyWith(_$GenderFilterChanged value,
           $Res Function(_$GenderFilterChanged) then) =
       __$$GenderFilterChangedCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({Gender? val});
+  $Res call({Gender? gender});
 }
 
 /// @nodoc
@@ -110,12 +94,12 @@ class __$$GenderFilterChangedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? val = freezed,
+    Object? gender = freezed,
   }) {
     return _then(_$GenderFilterChanged(
-      freezed == val
-          ? _value.val
-          : val // ignore: cast_nullable_to_non_nullable
+      freezed == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
               as Gender?,
     ));
   }
@@ -124,14 +108,14 @@ class __$$GenderFilterChangedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GenderFilterChanged implements GenderFilterChanged {
-  const _$GenderFilterChanged(this.val);
+  const _$GenderFilterChanged(this.gender);
 
   @override
-  final Gender? val;
+  final Gender? gender;
 
   @override
   String toString() {
-    return 'FilterEvent.genderFilterChanged(val: $val)';
+    return 'FilterEvent.genderFilterChanged(gender: $gender)';
   }
 
   @override
@@ -139,11 +123,11 @@ class _$GenderFilterChanged implements GenderFilterChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GenderFilterChanged &&
-            (identical(other.val, val) || other.val == val));
+            (identical(other.gender, gender) || other.gender == gender));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, val);
+  int get hashCode => Object.hash(runtimeType, gender);
 
   @JsonKey(ignore: true)
   @override
@@ -155,27 +139,30 @@ class _$GenderFilterChanged implements GenderFilterChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Gender? val) genderFilterChanged,
+    required TResult Function(Gender? gender) genderFilterChanged,
+    required TResult Function(String? text) searchTextChanged,
   }) {
-    return genderFilterChanged(val);
+    return genderFilterChanged(gender);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Gender? val)? genderFilterChanged,
+    TResult? Function(Gender? gender)? genderFilterChanged,
+    TResult? Function(String? text)? searchTextChanged,
   }) {
-    return genderFilterChanged?.call(val);
+    return genderFilterChanged?.call(gender);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Gender? val)? genderFilterChanged,
+    TResult Function(Gender? gender)? genderFilterChanged,
+    TResult Function(String? text)? searchTextChanged,
     required TResult orElse(),
   }) {
     if (genderFilterChanged != null) {
-      return genderFilterChanged(val);
+      return genderFilterChanged(gender);
     }
     return orElse();
   }
@@ -184,6 +171,7 @@ class _$GenderFilterChanged implements GenderFilterChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GenderFilterChanged value) genderFilterChanged,
+    required TResult Function(SearchTextChanged value) searchTextChanged,
   }) {
     return genderFilterChanged(this);
   }
@@ -192,6 +180,7 @@ class _$GenderFilterChanged implements GenderFilterChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GenderFilterChanged value)? genderFilterChanged,
+    TResult? Function(SearchTextChanged value)? searchTextChanged,
   }) {
     return genderFilterChanged?.call(this);
   }
@@ -200,6 +189,7 @@ class _$GenderFilterChanged implements GenderFilterChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GenderFilterChanged value)? genderFilterChanged,
+    TResult Function(SearchTextChanged value)? searchTextChanged,
     required TResult orElse(),
   }) {
     if (genderFilterChanged != null) {
@@ -210,12 +200,144 @@ class _$GenderFilterChanged implements GenderFilterChanged {
 }
 
 abstract class GenderFilterChanged implements FilterEvent {
-  const factory GenderFilterChanged(final Gender? val) = _$GenderFilterChanged;
+  const factory GenderFilterChanged(final Gender? gender) =
+      _$GenderFilterChanged;
 
-  @override
-  Gender? get val;
-  @override
+  Gender? get gender;
   @JsonKey(ignore: true)
   _$$GenderFilterChangedCopyWith<_$GenderFilterChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SearchTextChangedCopyWith<$Res> {
+  factory _$$SearchTextChangedCopyWith(
+          _$SearchTextChanged value, $Res Function(_$SearchTextChanged) then) =
+      __$$SearchTextChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? text});
+}
+
+/// @nodoc
+class __$$SearchTextChangedCopyWithImpl<$Res>
+    extends _$FilterEventCopyWithImpl<$Res, _$SearchTextChanged>
+    implements _$$SearchTextChangedCopyWith<$Res> {
+  __$$SearchTextChangedCopyWithImpl(
+      _$SearchTextChanged _value, $Res Function(_$SearchTextChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? text = freezed,
+  }) {
+    return _then(_$SearchTextChanged(
+      freezed == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchTextChanged implements SearchTextChanged {
+  const _$SearchTextChanged(this.text);
+
+  @override
+  final String? text;
+
+  @override
+  String toString() {
+    return 'FilterEvent.searchTextChanged(text: $text)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchTextChanged &&
+            (identical(other.text, text) || other.text == text));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, text);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchTextChangedCopyWith<_$SearchTextChanged> get copyWith =>
+      __$$SearchTextChangedCopyWithImpl<_$SearchTextChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Gender? gender) genderFilterChanged,
+    required TResult Function(String? text) searchTextChanged,
+  }) {
+    return searchTextChanged(text);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Gender? gender)? genderFilterChanged,
+    TResult? Function(String? text)? searchTextChanged,
+  }) {
+    return searchTextChanged?.call(text);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Gender? gender)? genderFilterChanged,
+    TResult Function(String? text)? searchTextChanged,
+    required TResult orElse(),
+  }) {
+    if (searchTextChanged != null) {
+      return searchTextChanged(text);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GenderFilterChanged value) genderFilterChanged,
+    required TResult Function(SearchTextChanged value) searchTextChanged,
+  }) {
+    return searchTextChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GenderFilterChanged value)? genderFilterChanged,
+    TResult? Function(SearchTextChanged value)? searchTextChanged,
+  }) {
+    return searchTextChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GenderFilterChanged value)? genderFilterChanged,
+    TResult Function(SearchTextChanged value)? searchTextChanged,
+    required TResult orElse(),
+  }) {
+    if (searchTextChanged != null) {
+      return searchTextChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SearchTextChanged implements FilterEvent {
+  const factory SearchTextChanged(final String? text) = _$SearchTextChanged;
+
+  String? get text;
+  @JsonKey(ignore: true)
+  _$$SearchTextChangedCopyWith<_$SearchTextChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }

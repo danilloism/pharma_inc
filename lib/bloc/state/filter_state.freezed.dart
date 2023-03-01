@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$FilterState {
   Gender? get gender => throw _privateConstructorUsedError;
+  String? get searchText => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FilterStateCopyWith<FilterState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $FilterStateCopyWith<$Res> {
           FilterState value, $Res Function(FilterState) then) =
       _$FilterStateCopyWithImpl<$Res, FilterState>;
   @useResult
-  $Res call({Gender? gender});
+  $Res call({Gender? gender, String? searchText});
 }
 
 /// @nodoc
@@ -46,12 +47,17 @@ class _$FilterStateCopyWithImpl<$Res, $Val extends FilterState>
   @override
   $Res call({
     Object? gender = freezed,
+    Object? searchText = freezed,
   }) {
     return _then(_value.copyWith(
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender?,
+      searchText: freezed == searchText
+          ? _value.searchText
+          : searchText // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -64,7 +70,7 @@ abstract class _$$_FilterStateCopyWith<$Res>
       __$$_FilterStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Gender? gender});
+  $Res call({Gender? gender, String? searchText});
 }
 
 /// @nodoc
@@ -79,12 +85,17 @@ class __$$_FilterStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? gender = freezed,
+    Object? searchText = freezed,
   }) {
     return _then(_$_FilterState(
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender?,
+      searchText: freezed == searchText
+          ? _value.searchText
+          : searchText // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -92,14 +103,16 @@ class __$$_FilterStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_FilterState implements _FilterState {
-  const _$_FilterState({this.gender});
+  const _$_FilterState({this.gender, this.searchText});
 
   @override
   final Gender? gender;
+  @override
+  final String? searchText;
 
   @override
   String toString() {
-    return 'FilterState(gender: $gender)';
+    return 'FilterState(gender: $gender, searchText: $searchText)';
   }
 
   @override
@@ -107,11 +120,13 @@ class _$_FilterState implements _FilterState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_FilterState &&
-            (identical(other.gender, gender) || other.gender == gender));
+            (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.searchText, searchText) ||
+                other.searchText == searchText));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, gender);
+  int get hashCode => Object.hash(runtimeType, gender, searchText);
 
   @JsonKey(ignore: true)
   @override
@@ -121,10 +136,13 @@ class _$_FilterState implements _FilterState {
 }
 
 abstract class _FilterState implements FilterState {
-  const factory _FilterState({final Gender? gender}) = _$_FilterState;
+  const factory _FilterState({final Gender? gender, final String? searchText}) =
+      _$_FilterState;
 
   @override
   Gender? get gender;
+  @override
+  String? get searchText;
   @override
   @JsonKey(ignore: true)
   _$$_FilterStateCopyWith<_$_FilterState> get copyWith =>

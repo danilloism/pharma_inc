@@ -26,7 +26,6 @@ class Address {
             : json['postcode'],
       );
 
-  //TODO: melhorar método
   @override
   String toString() {
     final buffer = StringBuffer()..writeln('$streetNumber $streetName');

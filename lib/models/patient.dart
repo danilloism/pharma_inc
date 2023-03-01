@@ -4,11 +4,6 @@ import 'package:pharma_inc/models/day_of_birth.dart';
 import 'package:pharma_inc/models/id.dart';
 import 'package:pharma_inc/models/name.dart';
 
-extension on String {
-  String get capitalized =>
-      '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
-}
-
 class Patient {
   final Id id;
   final Name _name;

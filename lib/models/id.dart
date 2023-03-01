@@ -7,4 +7,7 @@ class Id {
   factory Id.fromJson(Map<String, dynamic> json) {
     return Id(name: json['name'], value: json['value']);
   }
+
+  @override
+  String toString() => '${name ?? ''}-${value ?? ''}';
 }

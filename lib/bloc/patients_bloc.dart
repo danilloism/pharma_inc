@@ -45,14 +45,26 @@ class PatientsBloc extends Bloc<PatientsListEvent, PatientsState> {
 
   List<Patient> get _filteredPatients {
     final gender = _currentFilter.gender;
+    final searchText = _currentFilter.searchText;
     final patientsToFilter = [..._totalPatients];
 
-    if (gender == null) {
+    if (gender == null && searchText == null) {
       return patientsToFilter;
     }
 
-    final filteredByGender =
-        patientsToFilter.where((element) => element.gender == gender).toList();
-    return filteredByGender;
+    final List<Patient> filteredByGender = gender == null
+        ? patientsToFilter
+        : patientsToFilter
+            .where((element) => element.gender == gender)
+            .toList();
+
+    final List<Patient> filteredByName = searchText == null
+        ? filteredByGender
+        : filteredByGender
+            .where((element) =>
+                element.name.toLowerCase().contains(searchText.toLowerCase()))
+            .toList();
+
+    return filteredByName;
   }
 }
