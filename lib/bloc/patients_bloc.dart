@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharma_inc/bloc/events/patients_list_event.dart';
 import 'package:pharma_inc/bloc/state/filter_state.dart';
 import 'package:pharma_inc/bloc/state/patients_state.dart';
+import 'package:pharma_inc/exceptions/custom_http_exception.dart';
 import 'package:pharma_inc/models/patient.dart';
 import 'package:pharma_inc/repository/repository.dart';
 
@@ -12,13 +15,7 @@ class PatientsBloc extends Bloc<PatientsListEvent, PatientsState> {
       : super(const PatientsLoading()) {
     on<AppInitialized>(
       (event, emit) async {
-        try {
-          final patients = await repo.get(_requestPage);
-          _requestPage++;
-          emit(PatientsData(_totalPatients..addAll(patients)));
-        } catch (e) {
-          emit(PatientsError(patients: _totalPatients, error: e));
-        }
+        await _initialFetch(emit);
 
         await emit.forEach<FilterState>(
           filters,
@@ -41,8 +38,18 @@ class PatientsBloc extends Bloc<PatientsListEvent, PatientsState> {
 
           emit(PatientsData(_filteredPatients));
         } catch (e) {
-          emit(PatientsError(patients: state.patients, error: e));
+          emit(PatientsRefreshError(
+            patients: state.patients,
+            error: e is CustomHttpException ? e.message : e,
+          ));
         }
+      },
+    );
+    on<RetryButtonPressed>(
+      (event, emit) async {
+        emit(const PatientsRetryLoading());
+
+        await _initialFetch(emit);
       },
     );
   }
@@ -70,5 +77,15 @@ class PatientsBloc extends Bloc<PatientsListEvent, PatientsState> {
     }
 
     return filteredPatients;
+  }
+
+  Future<void> _initialFetch(Emitter<PatientsState> emit) async {
+    try {
+      final patients = await repo.get(_requestPage);
+      _requestPage++;
+      emit(PatientsData(_totalPatients..addAll(patients)));
+    } catch (e) {
+      emit(PatientsError(error: e is CustomHttpException ? e.message : e));
+    }
   }
 }
