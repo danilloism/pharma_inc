@@ -6,4 +6,5 @@ part 'patients_list_event.freezed.dart';
 class PatientsListEvent with _$PatientsListEvent {
   const factory PatientsListEvent.appInitialized() = AppInitialized;
   const factory PatientsListEvent.scrollHasReachedMax() = ScrollHasReachedMax;
+  const factory PatientsListEvent.retryButtonPressed() = RetryButtonPressed;
 }

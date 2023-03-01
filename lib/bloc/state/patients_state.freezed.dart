@@ -25,6 +25,10 @@ mixin _$PatientsState {
     required TResult Function(
             List<Patient> patients, Object? error, Object? stackTrace)
         error,
+    required TResult Function(
+            List<Patient> patients, Object? error, Object? stackTrace)
+        refreshError,
+    required TResult Function(List<Patient> patients) retryLoading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +39,10 @@ mixin _$PatientsState {
     TResult? Function(
             List<Patient> patients, Object? error, Object? stackTrace)?
         error,
+    TResult? Function(
+            List<Patient> patients, Object? error, Object? stackTrace)?
+        refreshError,
+    TResult? Function(List<Patient> patients)? retryLoading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +52,9 @@ mixin _$PatientsState {
     TResult Function(List<Patient> patients)? refreshing,
     TResult Function(List<Patient> patients, Object? error, Object? stackTrace)?
         error,
+    TResult Function(List<Patient> patients, Object? error, Object? stackTrace)?
+        refreshError,
+    TResult Function(List<Patient> patients)? retryLoading,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -53,6 +64,8 @@ mixin _$PatientsState {
     required TResult Function(PatientsData value) data,
     required TResult Function(PatientsRefreshing value) refreshing,
     required TResult Function(PatientsError value) error,
+    required TResult Function(PatientsRefreshError value) refreshError,
+    required TResult Function(PatientsRetryLoading value) retryLoading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,6 +74,8 @@ mixin _$PatientsState {
     TResult? Function(PatientsData value)? data,
     TResult? Function(PatientsRefreshing value)? refreshing,
     TResult? Function(PatientsError value)? error,
+    TResult? Function(PatientsRefreshError value)? refreshError,
+    TResult? Function(PatientsRetryLoading value)? retryLoading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +84,8 @@ mixin _$PatientsState {
     TResult Function(PatientsData value)? data,
     TResult Function(PatientsRefreshing value)? refreshing,
     TResult Function(PatientsError value)? error,
+    TResult Function(PatientsRefreshError value)? refreshError,
+    TResult Function(PatientsRetryLoading value)? retryLoading,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -192,6 +209,10 @@ class _$PatientsLoading extends PatientsLoading {
     required TResult Function(
             List<Patient> patients, Object? error, Object? stackTrace)
         error,
+    required TResult Function(
+            List<Patient> patients, Object? error, Object? stackTrace)
+        refreshError,
+    required TResult Function(List<Patient> patients) retryLoading,
   }) {
     return loading(patients);
   }
@@ -205,6 +226,10 @@ class _$PatientsLoading extends PatientsLoading {
     TResult? Function(
             List<Patient> patients, Object? error, Object? stackTrace)?
         error,
+    TResult? Function(
+            List<Patient> patients, Object? error, Object? stackTrace)?
+        refreshError,
+    TResult? Function(List<Patient> patients)? retryLoading,
   }) {
     return loading?.call(patients);
   }
@@ -217,6 +242,9 @@ class _$PatientsLoading extends PatientsLoading {
     TResult Function(List<Patient> patients)? refreshing,
     TResult Function(List<Patient> patients, Object? error, Object? stackTrace)?
         error,
+    TResult Function(List<Patient> patients, Object? error, Object? stackTrace)?
+        refreshError,
+    TResult Function(List<Patient> patients)? retryLoading,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -232,6 +260,8 @@ class _$PatientsLoading extends PatientsLoading {
     required TResult Function(PatientsData value) data,
     required TResult Function(PatientsRefreshing value) refreshing,
     required TResult Function(PatientsError value) error,
+    required TResult Function(PatientsRefreshError value) refreshError,
+    required TResult Function(PatientsRetryLoading value) retryLoading,
   }) {
     return loading(this);
   }
@@ -243,6 +273,8 @@ class _$PatientsLoading extends PatientsLoading {
     TResult? Function(PatientsData value)? data,
     TResult? Function(PatientsRefreshing value)? refreshing,
     TResult? Function(PatientsError value)? error,
+    TResult? Function(PatientsRefreshError value)? refreshError,
+    TResult? Function(PatientsRetryLoading value)? retryLoading,
   }) {
     return loading?.call(this);
   }
@@ -254,6 +286,8 @@ class _$PatientsLoading extends PatientsLoading {
     TResult Function(PatientsData value)? data,
     TResult Function(PatientsRefreshing value)? refreshing,
     TResult Function(PatientsError value)? error,
+    TResult Function(PatientsRefreshError value)? refreshError,
+    TResult Function(PatientsRetryLoading value)? retryLoading,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -356,6 +390,10 @@ class _$PatientsData extends PatientsData {
     required TResult Function(
             List<Patient> patients, Object? error, Object? stackTrace)
         error,
+    required TResult Function(
+            List<Patient> patients, Object? error, Object? stackTrace)
+        refreshError,
+    required TResult Function(List<Patient> patients) retryLoading,
   }) {
     return data(patients);
   }
@@ -369,6 +407,10 @@ class _$PatientsData extends PatientsData {
     TResult? Function(
             List<Patient> patients, Object? error, Object? stackTrace)?
         error,
+    TResult? Function(
+            List<Patient> patients, Object? error, Object? stackTrace)?
+        refreshError,
+    TResult? Function(List<Patient> patients)? retryLoading,
   }) {
     return data?.call(patients);
   }
@@ -381,6 +423,9 @@ class _$PatientsData extends PatientsData {
     TResult Function(List<Patient> patients)? refreshing,
     TResult Function(List<Patient> patients, Object? error, Object? stackTrace)?
         error,
+    TResult Function(List<Patient> patients, Object? error, Object? stackTrace)?
+        refreshError,
+    TResult Function(List<Patient> patients)? retryLoading,
     required TResult orElse(),
   }) {
     if (data != null) {
@@ -396,6 +441,8 @@ class _$PatientsData extends PatientsData {
     required TResult Function(PatientsData value) data,
     required TResult Function(PatientsRefreshing value) refreshing,
     required TResult Function(PatientsError value) error,
+    required TResult Function(PatientsRefreshError value) refreshError,
+    required TResult Function(PatientsRetryLoading value) retryLoading,
   }) {
     return data(this);
   }
@@ -407,6 +454,8 @@ class _$PatientsData extends PatientsData {
     TResult? Function(PatientsData value)? data,
     TResult? Function(PatientsRefreshing value)? refreshing,
     TResult? Function(PatientsError value)? error,
+    TResult? Function(PatientsRefreshError value)? refreshError,
+    TResult? Function(PatientsRetryLoading value)? retryLoading,
   }) {
     return data?.call(this);
   }
@@ -418,6 +467,8 @@ class _$PatientsData extends PatientsData {
     TResult Function(PatientsData value)? data,
     TResult Function(PatientsRefreshing value)? refreshing,
     TResult Function(PatientsError value)? error,
+    TResult Function(PatientsRefreshError value)? refreshError,
+    TResult Function(PatientsRetryLoading value)? retryLoading,
     required TResult orElse(),
   }) {
     if (data != null) {
@@ -520,6 +571,10 @@ class _$PatientsRefreshing extends PatientsRefreshing {
     required TResult Function(
             List<Patient> patients, Object? error, Object? stackTrace)
         error,
+    required TResult Function(
+            List<Patient> patients, Object? error, Object? stackTrace)
+        refreshError,
+    required TResult Function(List<Patient> patients) retryLoading,
   }) {
     return refreshing(patients);
   }
@@ -533,6 +588,10 @@ class _$PatientsRefreshing extends PatientsRefreshing {
     TResult? Function(
             List<Patient> patients, Object? error, Object? stackTrace)?
         error,
+    TResult? Function(
+            List<Patient> patients, Object? error, Object? stackTrace)?
+        refreshError,
+    TResult? Function(List<Patient> patients)? retryLoading,
   }) {
     return refreshing?.call(patients);
   }
@@ -545,6 +604,9 @@ class _$PatientsRefreshing extends PatientsRefreshing {
     TResult Function(List<Patient> patients)? refreshing,
     TResult Function(List<Patient> patients, Object? error, Object? stackTrace)?
         error,
+    TResult Function(List<Patient> patients, Object? error, Object? stackTrace)?
+        refreshError,
+    TResult Function(List<Patient> patients)? retryLoading,
     required TResult orElse(),
   }) {
     if (refreshing != null) {
@@ -560,6 +622,8 @@ class _$PatientsRefreshing extends PatientsRefreshing {
     required TResult Function(PatientsData value) data,
     required TResult Function(PatientsRefreshing value) refreshing,
     required TResult Function(PatientsError value) error,
+    required TResult Function(PatientsRefreshError value) refreshError,
+    required TResult Function(PatientsRetryLoading value) retryLoading,
   }) {
     return refreshing(this);
   }
@@ -571,6 +635,8 @@ class _$PatientsRefreshing extends PatientsRefreshing {
     TResult? Function(PatientsData value)? data,
     TResult? Function(PatientsRefreshing value)? refreshing,
     TResult? Function(PatientsError value)? error,
+    TResult? Function(PatientsRefreshError value)? refreshError,
+    TResult? Function(PatientsRetryLoading value)? retryLoading,
   }) {
     return refreshing?.call(this);
   }
@@ -582,6 +648,8 @@ class _$PatientsRefreshing extends PatientsRefreshing {
     TResult Function(PatientsData value)? data,
     TResult Function(PatientsRefreshing value)? refreshing,
     TResult Function(PatientsError value)? error,
+    TResult Function(PatientsRefreshError value)? refreshError,
+    TResult Function(PatientsRetryLoading value)? retryLoading,
     required TResult orElse(),
   }) {
     if (refreshing != null) {
@@ -701,6 +769,10 @@ class _$PatientsError extends PatientsError {
     required TResult Function(
             List<Patient> patients, Object? error, Object? stackTrace)
         error,
+    required TResult Function(
+            List<Patient> patients, Object? error, Object? stackTrace)
+        refreshError,
+    required TResult Function(List<Patient> patients) retryLoading,
   }) {
     return error(patients, this.error, stackTrace);
   }
@@ -714,6 +786,10 @@ class _$PatientsError extends PatientsError {
     TResult? Function(
             List<Patient> patients, Object? error, Object? stackTrace)?
         error,
+    TResult? Function(
+            List<Patient> patients, Object? error, Object? stackTrace)?
+        refreshError,
+    TResult? Function(List<Patient> patients)? retryLoading,
   }) {
     return error?.call(patients, this.error, stackTrace);
   }
@@ -726,6 +802,9 @@ class _$PatientsError extends PatientsError {
     TResult Function(List<Patient> patients)? refreshing,
     TResult Function(List<Patient> patients, Object? error, Object? stackTrace)?
         error,
+    TResult Function(List<Patient> patients, Object? error, Object? stackTrace)?
+        refreshError,
+    TResult Function(List<Patient> patients)? retryLoading,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -741,6 +820,8 @@ class _$PatientsError extends PatientsError {
     required TResult Function(PatientsData value) data,
     required TResult Function(PatientsRefreshing value) refreshing,
     required TResult Function(PatientsError value) error,
+    required TResult Function(PatientsRefreshError value) refreshError,
+    required TResult Function(PatientsRetryLoading value) retryLoading,
   }) {
     return error(this);
   }
@@ -752,6 +833,8 @@ class _$PatientsError extends PatientsError {
     TResult? Function(PatientsData value)? data,
     TResult? Function(PatientsRefreshing value)? refreshing,
     TResult? Function(PatientsError value)? error,
+    TResult? Function(PatientsRefreshError value)? refreshError,
+    TResult? Function(PatientsRetryLoading value)? retryLoading,
   }) {
     return error?.call(this);
   }
@@ -763,6 +846,8 @@ class _$PatientsError extends PatientsError {
     TResult Function(PatientsData value)? data,
     TResult Function(PatientsRefreshing value)? refreshing,
     TResult Function(PatientsError value)? error,
+    TResult Function(PatientsRefreshError value)? refreshError,
+    TResult Function(PatientsRetryLoading value)? retryLoading,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -786,5 +871,390 @@ abstract class PatientsError extends PatientsState {
   @override
   @JsonKey(ignore: true)
   _$$PatientsErrorCopyWith<_$PatientsError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PatientsRefreshErrorCopyWith<$Res>
+    implements $PatientsStateCopyWith<$Res> {
+  factory _$$PatientsRefreshErrorCopyWith(_$PatientsRefreshError value,
+          $Res Function(_$PatientsRefreshError) then) =
+      __$$PatientsRefreshErrorCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<Patient> patients, Object? error, Object? stackTrace});
+}
+
+/// @nodoc
+class __$$PatientsRefreshErrorCopyWithImpl<$Res>
+    extends _$PatientsStateCopyWithImpl<$Res, _$PatientsRefreshError>
+    implements _$$PatientsRefreshErrorCopyWith<$Res> {
+  __$$PatientsRefreshErrorCopyWithImpl(_$PatientsRefreshError _value,
+      $Res Function(_$PatientsRefreshError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? patients = null,
+    Object? error = freezed,
+    Object? stackTrace = freezed,
+  }) {
+    return _then(_$PatientsRefreshError(
+      patients: null == patients
+          ? _value._patients
+          : patients // ignore: cast_nullable_to_non_nullable
+              as List<Patient>,
+      error: freezed == error ? _value.error : error,
+      stackTrace: freezed == stackTrace ? _value.stackTrace : stackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PatientsRefreshError extends PatientsRefreshError {
+  const _$PatientsRefreshError(
+      {required final List<Patient> patients, this.error, this.stackTrace})
+      : _patients = patients,
+        super._();
+
+  final List<Patient> _patients;
+  @override
+  List<Patient> get patients {
+    if (_patients is EqualUnmodifiableListView) return _patients;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_patients);
+  }
+
+  @override
+  final Object? error;
+  @override
+  final Object? stackTrace;
+
+  @override
+  String toString() {
+    return 'PatientsState.refreshError(patients: $patients, error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PatientsRefreshError &&
+            const DeepCollectionEquality().equals(other._patients, _patients) &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            const DeepCollectionEquality()
+                .equals(other.stackTrace, stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_patients),
+      const DeepCollectionEquality().hash(error),
+      const DeepCollectionEquality().hash(stackTrace));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PatientsRefreshErrorCopyWith<_$PatientsRefreshError> get copyWith =>
+      __$$PatientsRefreshErrorCopyWithImpl<_$PatientsRefreshError>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<Patient> patients) loading,
+    required TResult Function(List<Patient> patients) data,
+    required TResult Function(List<Patient> patients) refreshing,
+    required TResult Function(
+            List<Patient> patients, Object? error, Object? stackTrace)
+        error,
+    required TResult Function(
+            List<Patient> patients, Object? error, Object? stackTrace)
+        refreshError,
+    required TResult Function(List<Patient> patients) retryLoading,
+  }) {
+    return refreshError(patients, this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(List<Patient> patients)? loading,
+    TResult? Function(List<Patient> patients)? data,
+    TResult? Function(List<Patient> patients)? refreshing,
+    TResult? Function(
+            List<Patient> patients, Object? error, Object? stackTrace)?
+        error,
+    TResult? Function(
+            List<Patient> patients, Object? error, Object? stackTrace)?
+        refreshError,
+    TResult? Function(List<Patient> patients)? retryLoading,
+  }) {
+    return refreshError?.call(patients, this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<Patient> patients)? loading,
+    TResult Function(List<Patient> patients)? data,
+    TResult Function(List<Patient> patients)? refreshing,
+    TResult Function(List<Patient> patients, Object? error, Object? stackTrace)?
+        error,
+    TResult Function(List<Patient> patients, Object? error, Object? stackTrace)?
+        refreshError,
+    TResult Function(List<Patient> patients)? retryLoading,
+    required TResult orElse(),
+  }) {
+    if (refreshError != null) {
+      return refreshError(patients, this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(PatientsLoading value) loading,
+    required TResult Function(PatientsData value) data,
+    required TResult Function(PatientsRefreshing value) refreshing,
+    required TResult Function(PatientsError value) error,
+    required TResult Function(PatientsRefreshError value) refreshError,
+    required TResult Function(PatientsRetryLoading value) retryLoading,
+  }) {
+    return refreshError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(PatientsLoading value)? loading,
+    TResult? Function(PatientsData value)? data,
+    TResult? Function(PatientsRefreshing value)? refreshing,
+    TResult? Function(PatientsError value)? error,
+    TResult? Function(PatientsRefreshError value)? refreshError,
+    TResult? Function(PatientsRetryLoading value)? retryLoading,
+  }) {
+    return refreshError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PatientsLoading value)? loading,
+    TResult Function(PatientsData value)? data,
+    TResult Function(PatientsRefreshing value)? refreshing,
+    TResult Function(PatientsError value)? error,
+    TResult Function(PatientsRefreshError value)? refreshError,
+    TResult Function(PatientsRetryLoading value)? retryLoading,
+    required TResult orElse(),
+  }) {
+    if (refreshError != null) {
+      return refreshError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PatientsRefreshError extends PatientsState {
+  const factory PatientsRefreshError(
+      {required final List<Patient> patients,
+      final Object? error,
+      final Object? stackTrace}) = _$PatientsRefreshError;
+  const PatientsRefreshError._() : super._();
+
+  @override
+  List<Patient> get patients;
+  Object? get error;
+  Object? get stackTrace;
+  @override
+  @JsonKey(ignore: true)
+  _$$PatientsRefreshErrorCopyWith<_$PatientsRefreshError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PatientsRetryLoadingCopyWith<$Res>
+    implements $PatientsStateCopyWith<$Res> {
+  factory _$$PatientsRetryLoadingCopyWith(_$PatientsRetryLoading value,
+          $Res Function(_$PatientsRetryLoading) then) =
+      __$$PatientsRetryLoadingCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<Patient> patients});
+}
+
+/// @nodoc
+class __$$PatientsRetryLoadingCopyWithImpl<$Res>
+    extends _$PatientsStateCopyWithImpl<$Res, _$PatientsRetryLoading>
+    implements _$$PatientsRetryLoadingCopyWith<$Res> {
+  __$$PatientsRetryLoadingCopyWithImpl(_$PatientsRetryLoading _value,
+      $Res Function(_$PatientsRetryLoading) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? patients = null,
+  }) {
+    return _then(_$PatientsRetryLoading(
+      patients: null == patients
+          ? _value._patients
+          : patients // ignore: cast_nullable_to_non_nullable
+              as List<Patient>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PatientsRetryLoading extends PatientsRetryLoading {
+  const _$PatientsRetryLoading({final List<Patient> patients = const []})
+      : _patients = patients,
+        super._();
+
+  final List<Patient> _patients;
+  @override
+  @JsonKey()
+  List<Patient> get patients {
+    if (_patients is EqualUnmodifiableListView) return _patients;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_patients);
+  }
+
+  @override
+  String toString() {
+    return 'PatientsState.retryLoading(patients: $patients)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PatientsRetryLoading &&
+            const DeepCollectionEquality().equals(other._patients, _patients));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_patients));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PatientsRetryLoadingCopyWith<_$PatientsRetryLoading> get copyWith =>
+      __$$PatientsRetryLoadingCopyWithImpl<_$PatientsRetryLoading>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<Patient> patients) loading,
+    required TResult Function(List<Patient> patients) data,
+    required TResult Function(List<Patient> patients) refreshing,
+    required TResult Function(
+            List<Patient> patients, Object? error, Object? stackTrace)
+        error,
+    required TResult Function(
+            List<Patient> patients, Object? error, Object? stackTrace)
+        refreshError,
+    required TResult Function(List<Patient> patients) retryLoading,
+  }) {
+    return retryLoading(patients);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(List<Patient> patients)? loading,
+    TResult? Function(List<Patient> patients)? data,
+    TResult? Function(List<Patient> patients)? refreshing,
+    TResult? Function(
+            List<Patient> patients, Object? error, Object? stackTrace)?
+        error,
+    TResult? Function(
+            List<Patient> patients, Object? error, Object? stackTrace)?
+        refreshError,
+    TResult? Function(List<Patient> patients)? retryLoading,
+  }) {
+    return retryLoading?.call(patients);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<Patient> patients)? loading,
+    TResult Function(List<Patient> patients)? data,
+    TResult Function(List<Patient> patients)? refreshing,
+    TResult Function(List<Patient> patients, Object? error, Object? stackTrace)?
+        error,
+    TResult Function(List<Patient> patients, Object? error, Object? stackTrace)?
+        refreshError,
+    TResult Function(List<Patient> patients)? retryLoading,
+    required TResult orElse(),
+  }) {
+    if (retryLoading != null) {
+      return retryLoading(patients);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(PatientsLoading value) loading,
+    required TResult Function(PatientsData value) data,
+    required TResult Function(PatientsRefreshing value) refreshing,
+    required TResult Function(PatientsError value) error,
+    required TResult Function(PatientsRefreshError value) refreshError,
+    required TResult Function(PatientsRetryLoading value) retryLoading,
+  }) {
+    return retryLoading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(PatientsLoading value)? loading,
+    TResult? Function(PatientsData value)? data,
+    TResult? Function(PatientsRefreshing value)? refreshing,
+    TResult? Function(PatientsError value)? error,
+    TResult? Function(PatientsRefreshError value)? refreshError,
+    TResult? Function(PatientsRetryLoading value)? retryLoading,
+  }) {
+    return retryLoading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PatientsLoading value)? loading,
+    TResult Function(PatientsData value)? data,
+    TResult Function(PatientsRefreshing value)? refreshing,
+    TResult Function(PatientsError value)? error,
+    TResult Function(PatientsRefreshError value)? refreshError,
+    TResult Function(PatientsRetryLoading value)? retryLoading,
+    required TResult orElse(),
+  }) {
+    if (retryLoading != null) {
+      return retryLoading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PatientsRetryLoading extends PatientsState {
+  const factory PatientsRetryLoading({final List<Patient> patients}) =
+      _$PatientsRetryLoading;
+  const PatientsRetryLoading._() : super._();
+
+  @override
+  List<Patient> get patients;
+  @override
+  @JsonKey(ignore: true)
+  _$$PatientsRetryLoadingCopyWith<_$PatientsRetryLoading> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -17,7 +17,19 @@ class PatientsState with _$PatientsState {
     Object? error,
     Object? stackTrace,
   }) = PatientsError;
+  const factory PatientsState.refreshError({
+    required List<Patient> patients,
+    Object? error,
+    Object? stackTrace,
+  }) = PatientsRefreshError;
+  const factory PatientsState.retryLoading(
+      {@Default([]) List<Patient> patients}) = PatientsRetryLoading;
 
   bool get isRefreshing =>
       maybeWhen(refreshing: (_) => true, orElse: () => false);
+
+  bool get isError => maybeWhen(
+      error: (_, __, ___) => true,
+      refreshError: (_, __, ___) => true,
+      orElse: () => false);
 }

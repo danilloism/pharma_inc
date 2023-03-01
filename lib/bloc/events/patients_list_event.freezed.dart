@@ -20,18 +20,21 @@ mixin _$PatientsListEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() appInitialized,
     required TResult Function() scrollHasReachedMax,
+    required TResult Function() retryButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? appInitialized,
     TResult? Function()? scrollHasReachedMax,
+    TResult? Function()? retryButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? appInitialized,
     TResult Function()? scrollHasReachedMax,
+    TResult Function()? retryButtonPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$PatientsListEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AppInitialized value) appInitialized,
     required TResult Function(ScrollHasReachedMax value) scrollHasReachedMax,
+    required TResult Function(RetryButtonPressed value) retryButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AppInitialized value)? appInitialized,
     TResult? Function(ScrollHasReachedMax value)? scrollHasReachedMax,
+    TResult? Function(RetryButtonPressed value)? retryButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AppInitialized value)? appInitialized,
     TResult Function(ScrollHasReachedMax value)? scrollHasReachedMax,
+    TResult Function(RetryButtonPressed value)? retryButtonPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,6 +120,7 @@ class _$AppInitialized implements AppInitialized {
   TResult when<TResult extends Object?>({
     required TResult Function() appInitialized,
     required TResult Function() scrollHasReachedMax,
+    required TResult Function() retryButtonPressed,
   }) {
     return appInitialized();
   }
@@ -123,6 +130,7 @@ class _$AppInitialized implements AppInitialized {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? appInitialized,
     TResult? Function()? scrollHasReachedMax,
+    TResult? Function()? retryButtonPressed,
   }) {
     return appInitialized?.call();
   }
@@ -132,6 +140,7 @@ class _$AppInitialized implements AppInitialized {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? appInitialized,
     TResult Function()? scrollHasReachedMax,
+    TResult Function()? retryButtonPressed,
     required TResult orElse(),
   }) {
     if (appInitialized != null) {
@@ -145,6 +154,7 @@ class _$AppInitialized implements AppInitialized {
   TResult map<TResult extends Object?>({
     required TResult Function(AppInitialized value) appInitialized,
     required TResult Function(ScrollHasReachedMax value) scrollHasReachedMax,
+    required TResult Function(RetryButtonPressed value) retryButtonPressed,
   }) {
     return appInitialized(this);
   }
@@ -154,6 +164,7 @@ class _$AppInitialized implements AppInitialized {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AppInitialized value)? appInitialized,
     TResult? Function(ScrollHasReachedMax value)? scrollHasReachedMax,
+    TResult? Function(RetryButtonPressed value)? retryButtonPressed,
   }) {
     return appInitialized?.call(this);
   }
@@ -163,6 +174,7 @@ class _$AppInitialized implements AppInitialized {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AppInitialized value)? appInitialized,
     TResult Function(ScrollHasReachedMax value)? scrollHasReachedMax,
+    TResult Function(RetryButtonPressed value)? retryButtonPressed,
     required TResult orElse(),
   }) {
     if (appInitialized != null) {
@@ -216,6 +228,7 @@ class _$ScrollHasReachedMax implements ScrollHasReachedMax {
   TResult when<TResult extends Object?>({
     required TResult Function() appInitialized,
     required TResult Function() scrollHasReachedMax,
+    required TResult Function() retryButtonPressed,
   }) {
     return scrollHasReachedMax();
   }
@@ -225,6 +238,7 @@ class _$ScrollHasReachedMax implements ScrollHasReachedMax {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? appInitialized,
     TResult? Function()? scrollHasReachedMax,
+    TResult? Function()? retryButtonPressed,
   }) {
     return scrollHasReachedMax?.call();
   }
@@ -234,6 +248,7 @@ class _$ScrollHasReachedMax implements ScrollHasReachedMax {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? appInitialized,
     TResult Function()? scrollHasReachedMax,
+    TResult Function()? retryButtonPressed,
     required TResult orElse(),
   }) {
     if (scrollHasReachedMax != null) {
@@ -247,6 +262,7 @@ class _$ScrollHasReachedMax implements ScrollHasReachedMax {
   TResult map<TResult extends Object?>({
     required TResult Function(AppInitialized value) appInitialized,
     required TResult Function(ScrollHasReachedMax value) scrollHasReachedMax,
+    required TResult Function(RetryButtonPressed value) retryButtonPressed,
   }) {
     return scrollHasReachedMax(this);
   }
@@ -256,6 +272,7 @@ class _$ScrollHasReachedMax implements ScrollHasReachedMax {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AppInitialized value)? appInitialized,
     TResult? Function(ScrollHasReachedMax value)? scrollHasReachedMax,
+    TResult? Function(RetryButtonPressed value)? retryButtonPressed,
   }) {
     return scrollHasReachedMax?.call(this);
   }
@@ -265,6 +282,7 @@ class _$ScrollHasReachedMax implements ScrollHasReachedMax {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AppInitialized value)? appInitialized,
     TResult Function(ScrollHasReachedMax value)? scrollHasReachedMax,
+    TResult Function(RetryButtonPressed value)? retryButtonPressed,
     required TResult orElse(),
   }) {
     if (scrollHasReachedMax != null) {
@@ -276,4 +294,112 @@ class _$ScrollHasReachedMax implements ScrollHasReachedMax {
 
 abstract class ScrollHasReachedMax implements PatientsListEvent {
   const factory ScrollHasReachedMax() = _$ScrollHasReachedMax;
+}
+
+/// @nodoc
+abstract class _$$RetryButtonPressedCopyWith<$Res> {
+  factory _$$RetryButtonPressedCopyWith(_$RetryButtonPressed value,
+          $Res Function(_$RetryButtonPressed) then) =
+      __$$RetryButtonPressedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RetryButtonPressedCopyWithImpl<$Res>
+    extends _$PatientsListEventCopyWithImpl<$Res, _$RetryButtonPressed>
+    implements _$$RetryButtonPressedCopyWith<$Res> {
+  __$$RetryButtonPressedCopyWithImpl(
+      _$RetryButtonPressed _value, $Res Function(_$RetryButtonPressed) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RetryButtonPressed implements RetryButtonPressed {
+  const _$RetryButtonPressed();
+
+  @override
+  String toString() {
+    return 'PatientsListEvent.retryButtonPressed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$RetryButtonPressed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() appInitialized,
+    required TResult Function() scrollHasReachedMax,
+    required TResult Function() retryButtonPressed,
+  }) {
+    return retryButtonPressed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? appInitialized,
+    TResult? Function()? scrollHasReachedMax,
+    TResult? Function()? retryButtonPressed,
+  }) {
+    return retryButtonPressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? appInitialized,
+    TResult Function()? scrollHasReachedMax,
+    TResult Function()? retryButtonPressed,
+    required TResult orElse(),
+  }) {
+    if (retryButtonPressed != null) {
+      return retryButtonPressed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AppInitialized value) appInitialized,
+    required TResult Function(ScrollHasReachedMax value) scrollHasReachedMax,
+    required TResult Function(RetryButtonPressed value) retryButtonPressed,
+  }) {
+    return retryButtonPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AppInitialized value)? appInitialized,
+    TResult? Function(ScrollHasReachedMax value)? scrollHasReachedMax,
+    TResult? Function(RetryButtonPressed value)? retryButtonPressed,
+  }) {
+    return retryButtonPressed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AppInitialized value)? appInitialized,
+    TResult Function(ScrollHasReachedMax value)? scrollHasReachedMax,
+    TResult Function(RetryButtonPressed value)? retryButtonPressed,
+    required TResult orElse(),
+  }) {
+    if (retryButtonPressed != null) {
+      return retryButtonPressed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RetryButtonPressed implements PatientsListEvent {
+  const factory RetryButtonPressed() = _$RetryButtonPressed;
 }
