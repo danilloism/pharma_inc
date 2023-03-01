@@ -10,7 +10,15 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
         (event, emit) => emit(state.copyWith(gender: event.gender)));
 
     on<SearchTextChanged>(
-      (event, emit) => emit(state.copyWith(searchText: event.text)),
+      (event, emit) {
+        var text = event.text;
+
+        if (text != null && text.isEmpty) {
+          text = null;
+        }
+
+        emit(state.copyWith(searchText: text));
+      },
       transformer: sequential(),
     );
   }
