@@ -61,6 +61,7 @@ class PatientsBloc extends Bloc<PatientsListEvent, PatientsState> {
   List<Patient> get _filteredPatients {
     final gender = _currentFilter.gender;
     final searchText = _currentFilter.searchText;
+    final nationalities = _currentFilter.nationalities;
     var filteredPatients = [..._totalPatients];
 
     if (gender != null) {
@@ -73,6 +74,12 @@ class PatientsBloc extends Bloc<PatientsListEvent, PatientsState> {
       filteredPatients = filteredPatients
           .where((element) =>
               element.name.toLowerCase().contains(searchText.toLowerCase()))
+          .toList();
+    }
+
+    if (nationalities != null) {
+      filteredPatients = filteredPatients
+          .where((element) => nationalities.contains(element.nationality))
           .toList();
     }
 

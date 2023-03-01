@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pharma_inc/gender.dart';
+import 'package:pharma_inc/nationality.dart';
 
 part 'filter_event.freezed.dart';
 
@@ -9,4 +10,7 @@ class FilterEvent with _$FilterEvent {
       GenderFilterChanged;
 
   const factory FilterEvent.searchTextChanged(String? text) = SearchTextChanged;
+
+  const factory FilterEvent.nationalitiesFilterChanged(
+      Set<Nationality>? nationalities) = NationalitiesFilterChanged;
 }

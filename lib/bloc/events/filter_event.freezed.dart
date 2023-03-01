@@ -20,18 +20,24 @@ mixin _$FilterEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(Gender? gender) genderFilterChanged,
     required TResult Function(String? text) searchTextChanged,
+    required TResult Function(Set<Nationality>? nationalities)
+        nationalitiesFilterChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Gender? gender)? genderFilterChanged,
     TResult? Function(String? text)? searchTextChanged,
+    TResult? Function(Set<Nationality>? nationalities)?
+        nationalitiesFilterChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Gender? gender)? genderFilterChanged,
     TResult Function(String? text)? searchTextChanged,
+    TResult Function(Set<Nationality>? nationalities)?
+        nationalitiesFilterChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +45,24 @@ mixin _$FilterEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(GenderFilterChanged value) genderFilterChanged,
     required TResult Function(SearchTextChanged value) searchTextChanged,
+    required TResult Function(NationalitiesFilterChanged value)
+        nationalitiesFilterChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GenderFilterChanged value)? genderFilterChanged,
     TResult? Function(SearchTextChanged value)? searchTextChanged,
+    TResult? Function(NationalitiesFilterChanged value)?
+        nationalitiesFilterChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GenderFilterChanged value)? genderFilterChanged,
     TResult Function(SearchTextChanged value)? searchTextChanged,
+    TResult Function(NationalitiesFilterChanged value)?
+        nationalitiesFilterChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -141,6 +153,8 @@ class _$GenderFilterChanged implements GenderFilterChanged {
   TResult when<TResult extends Object?>({
     required TResult Function(Gender? gender) genderFilterChanged,
     required TResult Function(String? text) searchTextChanged,
+    required TResult Function(Set<Nationality>? nationalities)
+        nationalitiesFilterChanged,
   }) {
     return genderFilterChanged(gender);
   }
@@ -150,6 +164,8 @@ class _$GenderFilterChanged implements GenderFilterChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Gender? gender)? genderFilterChanged,
     TResult? Function(String? text)? searchTextChanged,
+    TResult? Function(Set<Nationality>? nationalities)?
+        nationalitiesFilterChanged,
   }) {
     return genderFilterChanged?.call(gender);
   }
@@ -159,6 +175,8 @@ class _$GenderFilterChanged implements GenderFilterChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Gender? gender)? genderFilterChanged,
     TResult Function(String? text)? searchTextChanged,
+    TResult Function(Set<Nationality>? nationalities)?
+        nationalitiesFilterChanged,
     required TResult orElse(),
   }) {
     if (genderFilterChanged != null) {
@@ -172,6 +190,8 @@ class _$GenderFilterChanged implements GenderFilterChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(GenderFilterChanged value) genderFilterChanged,
     required TResult Function(SearchTextChanged value) searchTextChanged,
+    required TResult Function(NationalitiesFilterChanged value)
+        nationalitiesFilterChanged,
   }) {
     return genderFilterChanged(this);
   }
@@ -181,6 +201,8 @@ class _$GenderFilterChanged implements GenderFilterChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GenderFilterChanged value)? genderFilterChanged,
     TResult? Function(SearchTextChanged value)? searchTextChanged,
+    TResult? Function(NationalitiesFilterChanged value)?
+        nationalitiesFilterChanged,
   }) {
     return genderFilterChanged?.call(this);
   }
@@ -190,6 +212,8 @@ class _$GenderFilterChanged implements GenderFilterChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GenderFilterChanged value)? genderFilterChanged,
     TResult Function(SearchTextChanged value)? searchTextChanged,
+    TResult Function(NationalitiesFilterChanged value)?
+        nationalitiesFilterChanged,
     required TResult orElse(),
   }) {
     if (genderFilterChanged != null) {
@@ -275,6 +299,8 @@ class _$SearchTextChanged implements SearchTextChanged {
   TResult when<TResult extends Object?>({
     required TResult Function(Gender? gender) genderFilterChanged,
     required TResult Function(String? text) searchTextChanged,
+    required TResult Function(Set<Nationality>? nationalities)
+        nationalitiesFilterChanged,
   }) {
     return searchTextChanged(text);
   }
@@ -284,6 +310,8 @@ class _$SearchTextChanged implements SearchTextChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Gender? gender)? genderFilterChanged,
     TResult? Function(String? text)? searchTextChanged,
+    TResult? Function(Set<Nationality>? nationalities)?
+        nationalitiesFilterChanged,
   }) {
     return searchTextChanged?.call(text);
   }
@@ -293,6 +321,8 @@ class _$SearchTextChanged implements SearchTextChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Gender? gender)? genderFilterChanged,
     TResult Function(String? text)? searchTextChanged,
+    TResult Function(Set<Nationality>? nationalities)?
+        nationalitiesFilterChanged,
     required TResult orElse(),
   }) {
     if (searchTextChanged != null) {
@@ -306,6 +336,8 @@ class _$SearchTextChanged implements SearchTextChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(GenderFilterChanged value) genderFilterChanged,
     required TResult Function(SearchTextChanged value) searchTextChanged,
+    required TResult Function(NationalitiesFilterChanged value)
+        nationalitiesFilterChanged,
   }) {
     return searchTextChanged(this);
   }
@@ -315,6 +347,8 @@ class _$SearchTextChanged implements SearchTextChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GenderFilterChanged value)? genderFilterChanged,
     TResult? Function(SearchTextChanged value)? searchTextChanged,
+    TResult? Function(NationalitiesFilterChanged value)?
+        nationalitiesFilterChanged,
   }) {
     return searchTextChanged?.call(this);
   }
@@ -324,6 +358,8 @@ class _$SearchTextChanged implements SearchTextChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GenderFilterChanged value)? genderFilterChanged,
     TResult Function(SearchTextChanged value)? searchTextChanged,
+    TResult Function(NationalitiesFilterChanged value)?
+        nationalitiesFilterChanged,
     required TResult orElse(),
   }) {
     if (searchTextChanged != null) {
@@ -340,4 +376,163 @@ abstract class SearchTextChanged implements FilterEvent {
   @JsonKey(ignore: true)
   _$$SearchTextChangedCopyWith<_$SearchTextChanged> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$NationalitiesFilterChangedCopyWith<$Res> {
+  factory _$$NationalitiesFilterChangedCopyWith(
+          _$NationalitiesFilterChanged value,
+          $Res Function(_$NationalitiesFilterChanged) then) =
+      __$$NationalitiesFilterChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Set<Nationality>? nationalities});
+}
+
+/// @nodoc
+class __$$NationalitiesFilterChangedCopyWithImpl<$Res>
+    extends _$FilterEventCopyWithImpl<$Res, _$NationalitiesFilterChanged>
+    implements _$$NationalitiesFilterChangedCopyWith<$Res> {
+  __$$NationalitiesFilterChangedCopyWithImpl(
+      _$NationalitiesFilterChanged _value,
+      $Res Function(_$NationalitiesFilterChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? nationalities = freezed,
+  }) {
+    return _then(_$NationalitiesFilterChanged(
+      freezed == nationalities
+          ? _value._nationalities
+          : nationalities // ignore: cast_nullable_to_non_nullable
+              as Set<Nationality>?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$NationalitiesFilterChanged implements NationalitiesFilterChanged {
+  const _$NationalitiesFilterChanged(final Set<Nationality>? nationalities)
+      : _nationalities = nationalities;
+
+  final Set<Nationality>? _nationalities;
+  @override
+  Set<Nationality>? get nationalities {
+    final value = _nationalities;
+    if (value == null) return null;
+    if (_nationalities is EqualUnmodifiableSetView) return _nationalities;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(value);
+  }
+
+  @override
+  String toString() {
+    return 'FilterEvent.nationalitiesFilterChanged(nationalities: $nationalities)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NationalitiesFilterChanged &&
+            const DeepCollectionEquality()
+                .equals(other._nationalities, _nationalities));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_nationalities));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$NationalitiesFilterChangedCopyWith<_$NationalitiesFilterChanged>
+      get copyWith => __$$NationalitiesFilterChangedCopyWithImpl<
+          _$NationalitiesFilterChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Gender? gender) genderFilterChanged,
+    required TResult Function(String? text) searchTextChanged,
+    required TResult Function(Set<Nationality>? nationalities)
+        nationalitiesFilterChanged,
+  }) {
+    return nationalitiesFilterChanged(nationalities);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Gender? gender)? genderFilterChanged,
+    TResult? Function(String? text)? searchTextChanged,
+    TResult? Function(Set<Nationality>? nationalities)?
+        nationalitiesFilterChanged,
+  }) {
+    return nationalitiesFilterChanged?.call(nationalities);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Gender? gender)? genderFilterChanged,
+    TResult Function(String? text)? searchTextChanged,
+    TResult Function(Set<Nationality>? nationalities)?
+        nationalitiesFilterChanged,
+    required TResult orElse(),
+  }) {
+    if (nationalitiesFilterChanged != null) {
+      return nationalitiesFilterChanged(nationalities);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GenderFilterChanged value) genderFilterChanged,
+    required TResult Function(SearchTextChanged value) searchTextChanged,
+    required TResult Function(NationalitiesFilterChanged value)
+        nationalitiesFilterChanged,
+  }) {
+    return nationalitiesFilterChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GenderFilterChanged value)? genderFilterChanged,
+    TResult? Function(SearchTextChanged value)? searchTextChanged,
+    TResult? Function(NationalitiesFilterChanged value)?
+        nationalitiesFilterChanged,
+  }) {
+    return nationalitiesFilterChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GenderFilterChanged value)? genderFilterChanged,
+    TResult Function(SearchTextChanged value)? searchTextChanged,
+    TResult Function(NationalitiesFilterChanged value)?
+        nationalitiesFilterChanged,
+    required TResult orElse(),
+  }) {
+    if (nationalitiesFilterChanged != null) {
+      return nationalitiesFilterChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NationalitiesFilterChanged implements FilterEvent {
+  const factory NationalitiesFilterChanged(
+      final Set<Nationality>? nationalities) = _$NationalitiesFilterChanged;
+
+  Set<Nationality>? get nationalities;
+  @JsonKey(ignore: true)
+  _$$NationalitiesFilterChangedCopyWith<_$NationalitiesFilterChanged>
+      get copyWith => throw _privateConstructorUsedError;
 }

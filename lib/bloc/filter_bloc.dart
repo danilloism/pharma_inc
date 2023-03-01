@@ -21,5 +21,15 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
       },
       transformer: sequential(),
     );
+
+    on<NationalitiesFilterChanged>((event, emit) {
+      var nationalities = event.nationalities;
+
+      if (nationalities != null && nationalities.isEmpty) {
+        nationalities = null;
+      }
+
+      emit(state.copyWith(nationalities: nationalities));
+    });
   }
 }
