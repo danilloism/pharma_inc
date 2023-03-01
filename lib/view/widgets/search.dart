@@ -45,13 +45,8 @@ class _SearchState extends State<Search> {
     super.dispose();
   }
 
-  void onSearch(String? value, BuildContext context) {
-    if (value?.isEmpty ?? false) {
-      value = null;
-    }
-
-    context.read<FilterBloc>().add(SearchTextChanged(value));
-  }
+  void onSearch(String? value, BuildContext context) =>
+      context.read<FilterBloc>().add(SearchTextChanged(value));
 
   @override
   Widget build(BuildContext context) {
@@ -68,10 +63,11 @@ class _SearchState extends State<Search> {
               suffixIcon: _showClearButton
                   ? IconButton(
                       onPressed: () {
-                        _controller.text = '';
+                        _controller.clear();
                         context
                             .read<FilterBloc>()
-                            .add(const SearchTextChanged(null));
+                            .add(SearchTextChanged(_controller.text));
+                        _node.unfocus();
                       },
                       icon: const Icon(Icons.clear))
                   : const Icon(Icons.person_search),
