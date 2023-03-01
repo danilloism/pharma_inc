@@ -23,10 +23,10 @@ void main() async {
       );
 
   setUpAll(() async {
-    final mockResponseStr =
+    final encodedMockResponse =
         await rootBundle.loadString('assets/mock_response.json');
 
-    data = jsonDecode(mockResponseStr);
+    data = jsonDecode(encodedMockResponse);
 
     httpOkResponse = Response(
         requestOptions: RequestOptions(path: ''), data: data, statusCode: 200);
