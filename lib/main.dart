@@ -36,7 +36,7 @@ Future<void> main() async {
         BlocProvider.value(value: filterBloc),
       ],
       child: MaterialApp(
-        home: const App(),
+        home: const Scaffold(body: App()),
         theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: ColorName.softBlue),
             useMaterial3: true,
@@ -53,7 +53,23 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PatientsBloc, PatientsState>(
+    return BlocConsumer<PatientsBloc, PatientsState>(
+      listenWhen: (previous, current) => current.isError,
+      listener: (context, state) {
+        final error = state.whenOrNull(
+          error: (_, error, __) => error,
+          refreshError: (_, error, __) => error,
+        );
+        final messenger = ScaffoldMessenger.of(context);
+
+        messenger.hideCurrentSnackBar();
+        messenger.showSnackBar(
+          SnackBar(
+            content: Text(error.toString()),
+            backgroundColor: Colors.red,
+          ),
+        );
+      },
       buildWhen: (previous, current) =>
           previous is PatientsLoading && current is! PatientsLoading,
       builder: (context, state) {
