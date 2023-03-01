@@ -3,6 +3,7 @@ import 'package:pharma_inc/models/address.dart';
 import 'package:pharma_inc/models/day_of_birth.dart';
 import 'package:pharma_inc/models/id.dart';
 import 'package:pharma_inc/models/name.dart';
+import 'package:pharma_inc/nationality.dart';
 
 class Patient {
   final Id id;
@@ -12,7 +13,7 @@ class Patient {
   final Gender gender;
   final DayOfBirth dob;
   final String phone;
-  final String nationality;
+  final Nationality nationality;
   final Address address;
 
   String get name => _name.toString();
@@ -39,7 +40,7 @@ class Patient {
           .singleWhere((gender) => gender.name == (json['gender'] as String)),
       dob: DayOfBirth.fromJson(json['dob']),
       phone: json['phone'],
-      nationality: json['nat'],
+      nationality: Nationality.fromString(json['nat']),
       address: Address.fromJson(json['location']),
     );
   }

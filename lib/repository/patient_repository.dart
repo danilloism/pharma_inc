@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:pharma_inc/constants.dart';
 import 'package:pharma_inc/exceptions/custom_http_exception.dart';
+import 'package:pharma_inc/nationality.dart';
 
 import '../models/patient.dart';
 import 'repository.dart';
@@ -20,6 +21,7 @@ class PatientRepository implements Repository {
           'results': 50,
           'seed': 'dnn',
           'exc': ['login', 'registered', 'cell'],
+          'nat': Nationality.queryParamValue,
         },
       );
 
