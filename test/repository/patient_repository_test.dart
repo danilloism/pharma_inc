@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pharma_inc/exceptions/custom_http_exception.dart';
+import 'package:pharma_inc/generated/assets.gen.dart';
 import 'package:pharma_inc/models/patient.dart';
 import 'package:pharma_inc/repository/patient_repository.dart';
 
@@ -24,7 +25,7 @@ void main() async {
 
   setUpAll(() async {
     final encodedMockResponse =
-        await rootBundle.loadString('assets/mock_response.json');
+        await rootBundle.loadString(Assets.mockResponse);
 
     data = jsonDecode(encodedMockResponse);
   });
