@@ -27,12 +27,14 @@ void main() async {
         await rootBundle.loadString('assets/mock_response.json');
 
     data = jsonDecode(encodedMockResponse);
+  });
 
+  setUp(() {
+    dioMock = DioMock();
     httpOkResponse = Response(
         requestOptions: RequestOptions(path: ''), data: data, statusCode: 200);
 
-    dioMock = DioMock();
-    when(dioMockGet).thenAnswer((_) async => Future.value(httpOkResponse));
+    when(dioMockGet).thenAnswer((_) async => httpOkResponse);
 
     repository = PatientRepository(dioClient: dioMock);
   });
