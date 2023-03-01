@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pharma_inc/bloc/events/filter_event.dart';
 import 'package:pharma_inc/bloc/events/patients_list_event.dart';
+import 'package:pharma_inc/bloc/filter_bloc.dart';
 import 'package:pharma_inc/bloc/patients_bloc.dart';
+import 'package:pharma_inc/bloc/state/filter_state.dart';
 import 'package:pharma_inc/bloc/state/patients_state.dart';
 import 'package:pharma_inc/generated_assets/assets.gen.dart';
 import 'package:pharma_inc/generated_assets/colors.gen.dart';
 import 'package:pharma_inc/view/widgets/gap.dart';
+import 'package:pharma_inc/view/widgets/nationality_filter_dialog.dart';
 import 'package:pharma_inc/view/widgets/patients_list_view.dart';
 import 'package:pharma_inc/view/widgets/search.dart';
 
@@ -82,26 +86,63 @@ class _PatientsPageState extends State<PatientsPage> {
       body: CustomScrollView(
         controller: _scroll,
         slivers: [
-          SliverAppBar(
-            floating: true,
-            snap: true,
-            toolbarHeight: _toolbarHeight,
-            title: Padding(
-              padding: const EdgeInsets.only(top: 16),
-              child: SizedBox(
-                height: _toolbarHeight * 2 - 4,
-                child: Assets.logo.image(
-                  fit: BoxFit.fitHeight,
-                  isAntiAlias: true,
+          BlocBuilder<FilterBloc, FilterState>(builder: (context, state) {
+            final hasFilters = state != const FilterState();
+            return SliverAppBar(
+              floating: true,
+              snap: true,
+              toolbarHeight: _toolbarHeight,
+              title: Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: SizedBox(
+                  height: _toolbarHeight * 2 - 4,
+                  child: Assets.logo.image(
+                    fit: BoxFit.fitHeight,
+                    isAntiAlias: true,
+                  ),
                 ),
               ),
-            ),
-            bottom: AppBar(
-              toolbarHeight: _toolbarHeight,
-              title: Search(beforeSearchOrFilterApplied: _jumpToStart),
-              shadowColor: ColorName.deepBlue,
-            ),
-          ),
+              bottom: AppBar(
+                toolbarHeight:
+                    hasFilters ? _toolbarHeight + 25 : _toolbarHeight,
+                title: Column(
+                  children: [
+                    Search(beforeSearchOrFilterApplied: _jumpToStart),
+                    if (hasFilters)
+                      Row(
+                        children: [
+                          if (state.gender != null) ...[
+                            InputChip(
+                              label: const Text('Gender'),
+                              onDeleted: () => context
+                                  .read<FilterBloc>()
+                                  .add(const GenderFilterChanged(null)),
+                            ),
+                            Gap.w08,
+                          ],
+                          if (state.nationalities != null)
+                            InputChip(
+                              label: const Text('Nationality'),
+                              onDeleted: () => context
+                                  .read<FilterBloc>()
+                                  .add(const NationalitiesFilterChanged(null)),
+                              onPressed: () => showNationalityFilterDialog(
+                                context,
+                                onConfirm: (nationalities) => context
+                                    .read<FilterBloc>()
+                                    .add(NationalitiesFilterChanged(
+                                        nationalities)),
+                                currentFilter: state.nationalities,
+                              ),
+                            ),
+                        ],
+                      )
+                  ],
+                ),
+                shadowColor: ColorName.deepBlue,
+              ),
+            );
+          }),
           BlocBuilder<PatientsBloc, PatientsState>(
             buildWhen: (previous, current) => current.maybeWhen(
               data: (_) => previous is PatientsRetryLoading,
